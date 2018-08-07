@@ -28,21 +28,143 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnManagerUser = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pnlContainer = new System.Windows.Forms.Panel();
+            this.pnlMenu.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // pnlMenu
+            // 
+            this.pnlMenu.BackColor = System.Drawing.Color.White;
+            this.pnlMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlMenu.Controls.Add(this.btnManagerUser);
+            this.pnlMenu.Controls.Add(this.btnLogout);
+            this.pnlMenu.Controls.Add(this.button3);
+            this.pnlMenu.Controls.Add(this.button2);
+            this.pnlMenu.Controls.Add(this.panel3);
+            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlMenu.ForeColor = System.Drawing.Color.Coral;
+            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(222, 561);
+            this.pnlMenu.TabIndex = 0;
+            // 
+            // btnManagerUser
+            // 
+            this.btnManagerUser.BackColor = System.Drawing.Color.White;
+            this.btnManagerUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManagerUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManagerUser.Location = new System.Drawing.Point(8, 90);
+            this.btnManagerUser.Name = "btnManagerUser";
+            this.btnManagerUser.Size = new System.Drawing.Size(205, 58);
+            this.btnManagerUser.TabIndex = 2;
+            this.btnManagerUser.Text = "Người dùng";
+            this.btnManagerUser.UseVisualStyleBackColor = false;
+            this.btnManagerUser.Click += new System.EventHandler(this.btnManagerUser_Click);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.OldLace;
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Location = new System.Drawing.Point(0, 512);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(218, 45);
+            this.btnLogout.TabIndex = 0;
+            this.btnLogout.Text = "Đăng xuất";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(8, 218);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(205, 58);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Chuyên đề";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(8, 154);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(205, 58);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Chuyên ngành";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Tomato;
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(218, 84);
+            this.panel3.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Snow;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 84);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ADMIN";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlContainer
+            // 
+            this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContainer.Location = new System.Drawing.Point(222, 0);
+            this.pnlContainer.Name = "pnlContainer";
+            this.pnlContainer.Size = new System.Drawing.Size(662, 561);
+            this.pnlContainer.TabIndex = 1;
             // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 458);
+            this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.pnlContainer);
+            this.Controls.Add(this.pnlMenu);
             this.Name = "frmAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang quản trị Admin";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAdmin_FormClosed);
+            this.pnlMenu.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel pnlMenu;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlContainer;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnManagerUser;
     }
 }
 
