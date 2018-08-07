@@ -45,14 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Teacher.cs">
+    <Compile Include="frmTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Teacher.Designer.cs">
-      <DependentUpon>Teacher.cs</DependentUpon>
+    <Compile Include="frmTeacher.Designer.cs">
+      <DependentUpon>frmTeacher.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmTeacher.resx">
+      <DependentUpon>frmTeacher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

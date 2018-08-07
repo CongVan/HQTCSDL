@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Admin
 {
-    public partial class Admin : Form
+    public partial class frmAdmin : Form
     {
-        public Admin()
+        public frmAdmin()
         {
             InitializeComponent();
+        }
+
+        private void frmAdmin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

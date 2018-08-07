@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Student
+namespace Teacher
 {
-    public partial class Student : Form
+    public partial class frmTeacher : Form
     {
-        public Student()
+        public frmTeacher()
         {
             InitializeComponent();
+        }
+
+        private void frmTeacher_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
