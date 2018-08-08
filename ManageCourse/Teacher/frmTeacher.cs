@@ -21,5 +21,18 @@ namespace Teacher
         {
             Application.Exit();
         }
+
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+
+        private void btnOpenTopic_Click(object sender, EventArgs e)
+        {
+            frmAddTopic frm = new frmAddTopic();
+            frm.ShowDialog();
+        }
     }
 }
