@@ -30,7 +30,7 @@
         {
             this.btnSubmit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblTitleMain = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtPassWord = new System.Windows.Forms.TextBox();
             this.cbbStatus = new System.Windows.Forms.ComboBox();
@@ -76,26 +76,26 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Tomato;
-            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.lblTitleMain);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(374, 41);
             this.panel1.TabIndex = 15;
             // 
-            // label9
+            // lblTitleMain
             // 
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Snow;
-            this.label9.Location = new System.Drawing.Point(0, 0);
-            this.label9.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(374, 41);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "TẠO TÀI KHOẢN";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitleMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTitleMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTitleMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleMain.ForeColor = System.Drawing.Color.Snow;
+            this.lblTitleMain.Location = new System.Drawing.Point(0, 0);
+            this.lblTitleMain.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
+            this.lblTitleMain.Name = "lblTitleMain";
+            this.lblTitleMain.Size = new System.Drawing.Size(374, 41);
+            this.lblTitleMain.TabIndex = 0;
+            this.lblTitleMain.Text = "TẠO TÀI KHOẢN";
+            this.lblTitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
@@ -349,7 +349,7 @@
 
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblTitleMain;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtPassWord;
         private System.Windows.Forms.ComboBox cbbStatus;

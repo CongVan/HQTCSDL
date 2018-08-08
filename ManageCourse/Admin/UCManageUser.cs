@@ -15,13 +15,21 @@ namespace Admin
     public partial class UCManageUser : UserControl
     {
         string connectionString = DBEntity.GetConnection();
+
+        public delegate void ActionUpDateDelegate(string id);
+        public static event ActionUpDateDelegate ActionUpDate;
+
         public UCManageUser()
         {
             InitializeComponent();
+
+
             this.Dock = DockStyle.Fill;
             this.AutoSize = true;
             this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left);
             LoadData();
+
+            
         }
         private void LoadData()
         {
@@ -42,7 +50,13 @@ namespace Admin
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             var frm = new frmAddUser();
+            frm.InsertSuccess += new frmAddUser.ReloadDataDelegate(Frm_InsertSuccess);
             frm.Show();
+        }
+
+        private void Frm_InsertSuccess()
+        {
+            LoadData();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -52,8 +66,9 @@ namespace Admin
 
             if (dr == DialogResult.Yes)
             {
+               
                 int rowIndex = dgvUsers.CurrentCell.RowIndex;
-                if ( rowIndex > 0)
+                if ( rowIndex >= 0)
                 {
                     var id = dgvUsers.Rows[rowIndex].Cells[0].Value.ToString();
                     var conn = new SqlConnection(connectionString);
@@ -75,5 +90,22 @@ namespace Admin
                 }
             }
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            int rowIndex = dgvUsers.CurrentCell.RowIndex;
+            if (rowIndex >= 0)
+            {
+                var id = dgvUsers.Rows[rowIndex].Cells[0].Value.ToString();
+
+                var form = new frmAddUser();
+                
+               
+                form.Show();
+                ActionUpDate(id);
+            }
+        }
+
+       
     }
 }
