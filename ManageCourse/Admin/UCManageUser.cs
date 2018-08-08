@@ -40,7 +40,8 @@ namespace Admin
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            
+            var frm = new frmAddUser();
+            frm.Show();
         }
     }
 }

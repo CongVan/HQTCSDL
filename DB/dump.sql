@@ -4,7 +4,7 @@ USE ManageCourse;
 GO
 CREATE TABLE [User]
 (ID       INT IDENTITY(1, 1) PRIMARY KEY, 
- Name     VARCHAR(100), --ten dang nhap
+ UserName     VARCHAR(100), --ten dang nhap
  PassWord VARCHAR(100), --
  Type     INT, --1:Admin, 2:Teacher, 3: Student
  Enable   BIT DEFAULT 1, 
@@ -64,7 +64,7 @@ GO
 INSERT INTO dbo.[User]
 (
 --ID - this column value is auto-generated
-Name, 
+UserName, 
 PassWord, 
 Type
 )
@@ -92,12 +92,27 @@ CREATE PROC GetUser @UserName VARCHAR(100),
                     @PassWord VARCHAR(100)
 AS
      BEGIN
-         SELECT u.Name, 
+         SELECT u.UserName, 
                 u.PassWord, 
                 u.Type
          FROM [dbo].[User] u
-         WHERE u.Name = @UserName
+         WHERE u.UserName = @UserName
                AND u.PassWord = @PassWord;
      END;
-         SELECT *
-         FROM dbo.[User] u;
+GO
+
+CREATE PROC InsertUser
+@UserName varchar(100),
+@PassWord varchar(100),
+@Type int,
+@Enable   BIT, 
+@FromDate DATETIME, 
+@ToDate   DATETIME,
+@FullName   NVARCHAR(100), 
+@Gender     TINYINT, 
+@DayOfBirth DATE, 
+@Address    NVARCHAR(500)
+AS
+BEGIN
+	
+END
