@@ -78,34 +78,28 @@ VALUES
 'TC001', -- Name - VARCHAR
 '123456', -- PassWord - VARCHAR
 2 -- Type - INT
-),
-(
--- ID - INT
-'SV001', -- Name - VARCHAR
-'123456', -- PassWord - VARCHAR
-3 -- Type - INT
 );
 GO
-CREATE PROC GetUser @UserName VARCHAR(100), 
-                    @PassWord VARCHAR(100)
+ALTER PROC GetUser @UserName VARCHAR(100), 
+                   @PassWord VARCHAR(100)
 AS
      BEGIN
-         SELECT u.UserName, u.PassWord, u.Type
+         SELECT u.UserName, u.PassWord, u.Type, CONVERT(VARCHAR(20), u.FromDate, 111) FromDate, CONVERT(VARCHAR(20), u.ToDate, 111) ToDate
          FROM [dbo].[User] u
          WHERE u.UserName = @UserName
                AND u.PassWord = @PassWord;
      END;
 GO
 ALTER PROC InsertUser @UserName   VARCHAR(100), 
-                       @PassWord   VARCHAR(100), 
-                       @Type       INT, 
-                       @Enable     BIT, 
-                       @FromDate   DATETIME, 
-                       @ToDate     DATETIME, 
-                       @FullName   NVARCHAR(100), 
-                       @Gender     TINYINT, 
-                       @DayOfBirth DATE, 
-                       @Address    NVARCHAR(500)
+                      @PassWord   VARCHAR(100), 
+                      @Type       INT, 
+                      @Enable     BIT, 
+                      @FromDate   DATETIME, 
+                      @ToDate     DATETIME, 
+                      @FullName   NVARCHAR(100), 
+                      @Gender     TINYINT, 
+                      @DayOfBirth DATE, 
+                      @Address    NVARCHAR(500)
 AS
      BEGIN
          INSERT INTO dbo.[User]
@@ -128,10 +122,10 @@ AS
          IF @IDUser > 0
             AND @Type = 3
              BEGIN
-			 DECLARE @CodeStudent varchar(100);
-			 SET @CodeStudent='SV'+CAST(@IDUser AS varchar(10))
+                 DECLARE @CodeStudent VARCHAR(100);
+                 SET @CodeStudent = 'SV'+CAST(@IDUser AS VARCHAR(10));
                  INSERT INTO dbo.Student(Code, FullName, Gender, DayOfBirth, Address, UserID)
-             VALUES
+                 VALUES
                  (@CodeStudent, -- Code - 
                   @FullName, -- FullName - NVARCHAR
                   @Gender, -- Gender - TINYINT
@@ -151,22 +145,43 @@ AS
                         WHEN 2 THEN N'Giáo viên'
                         WHEN 3 THEN N'Sinh viên'
                         ELSE ''
-                    END 'Type',CASE Enable WHEN 1 THEN N'Kích hoạt' ELSE N'Hủy' END 'Enable', FromDate, ToDate
+                    END 'Type',
+                        CASE Enable
+                            WHEN 1 THEN N'Kích hoạt'
+                            ELSE N'Hủy'
+                        END 'Enable', FromDate, ToDate
          FROM [User];
      END;
 GO
-CREATE PROC DeleteUser
-@ID int
+ALTER PROC DeleteUser @ID INT
 AS
-BEGIN
-	DECLARE @Type int,@IDStudent int  
-
-	SELECT @Type=u.Type,@IDStudent=u.ID FROM dbo.[User] u WHERE u.ID=@ID
-	
-	DELETE dbo.[User] WHERE ID=@ID
-
-	IF @Type=3
-	BEGIN
-		DELETE dbo.Student WHERE dbo.Student.ID=@IDStudent
-	END
-END
+     BEGIN
+         DECLARE @Type INT;
+         SELECT @Type = u.Type
+         FROM dbo.[User] u
+         WHERE u.ID = @ID;
+         DELETE dbo.[User]
+         WHERE ID = @ID;
+         IF @Type = 3
+             BEGIN
+                 DELETE dbo.Student
+                 WHERE dbo.Student.UserID = @ID;
+             END;
+     END;
+GO
+CREATE PROC GetStudentFromUser @ID INT
+AS
+     BEGIN
+         SELECT s.ID, s.Code, s.FullName, s.Gender, CONVERT(VARCHAR(20), s.DayOfBirth, 111) DayOfBirth, s.Address, s.MajorID, s.UserID
+         FROM dbo.Student s
+         WHERE s.UserID = @ID;
+     END;
+	 GO
+ALTER PROC GetUserFromID @ID INT
+AS
+     BEGIN
+         SELECT u.UserName, u.PassWord,u.Enable ,u.Type, CONVERT(VARCHAR(20), u.FromDate, 111) FromDate, CONVERT(VARCHAR(20), u.ToDate, 111) ToDate
+         FROM [dbo].[User] u
+         WHERE u.ID = @ID;
+     END;
+GO
