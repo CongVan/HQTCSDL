@@ -16,20 +16,20 @@ namespace Admin
     {
         public delegate void ReloadDataDelegate();
         public event ReloadDataDelegate InsertSuccess;
-
         
-
         public enum ActionType
         {
             Insert,Update
         }
+        ActionType actionMain;
+        string idUserUpdate = "";
         public frmAddUser()
         {
             InitializeComponent();
             LoadSourceGender();
             LoadSourceType();
             LoadSourceStatus();
-
+            actionMain = ActionType.Insert;
             UCManageUser.ActionUpDate += new UCManageUser.ActionUpDateDelegate(LoadDataUpdate);
         }
         private void LoadSourceGender()
@@ -66,6 +66,7 @@ namespace Admin
         }
         private void LoadDataUpdate(string id)
         {
+            idUserUpdate = id;
             lblTitleMain.Text = "CẬP NHẬT TÀI KHOẢN";
             this.Text = "Cập nhật tài khoản";
             var conn = new SqlConnection(DBEntity.GetConnection());
@@ -122,6 +123,11 @@ namespace Admin
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (actionMain == ActionType.Update&& idUserUpdate=="")
+            {
+                MessageBox.Show("Không tìm thấy User!","Thông báo");
+                return;
+            }
 
             string userName = txtUserName.Text;
             string passWord = txtPassWord.Text;
@@ -136,7 +142,7 @@ namespace Admin
 
             var conn = new SqlConnection(DBEntity.GetConnection());
             conn.Open();
-            var cmd = new SqlCommand("InsertUser", conn);
+            var cmd = new SqlCommand(actionMain==ActionType.Insert?"InsertUser":"UpdateUser", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@UserName", userName);
             cmd.Parameters.AddWithValue("@PassWord", passWord);
@@ -171,17 +177,20 @@ namespace Admin
             }
             //cmd.Parameters.AddWithValue("@DayOfBirth",dayOfBirth);
             cmd.Parameters.AddWithValue("@Address", address);
-
+            if (actionMain == ActionType.Update)
+            {
+                cmd.Parameters.AddWithValue("@ID", idUserUpdate);
+            }
             int count = cmd.ExecuteNonQuery();
             conn.Close();
             if (count > 0)
             {
                 InsertSuccess();
-                MessageBox.Show(null, "Tạo tài khoản thành công!", "Thông báo");
+                MessageBox.Show(null, "Thành công!", "Thông báo");
             }
             else
             {
-                MessageBox.Show(null, "Tạo tài khoản thất bại!", "Thông báo");
+                MessageBox.Show(null, "Thất bại!", "Thông báo");
             }
 
         }

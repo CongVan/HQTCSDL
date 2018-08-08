@@ -169,7 +169,7 @@ AS
              END;
      END;
 GO
-CREATE PROC GetStudentFromUser @ID INT
+ALTER PROC GetStudentFromUser @ID INT
 AS
      BEGIN
          SELECT s.ID, s.Code, s.FullName, s.Gender, CONVERT(VARCHAR(20), s.DayOfBirth, 111) DayOfBirth, s.Address, s.MajorID, s.UserID
@@ -183,5 +183,48 @@ AS
          SELECT u.UserName, u.PassWord,u.Enable ,u.Type, CONVERT(VARCHAR(20), u.FromDate, 111) FromDate, CONVERT(VARCHAR(20), u.ToDate, 111) ToDate
          FROM [dbo].[User] u
          WHERE u.ID = @ID;
+     END;
+GO
+
+CREATE PROC UpdateUser @UserName   VARCHAR(100), 
+                      @PassWord   VARCHAR(100), 
+                      @Type       INT, 
+                      @Enable     BIT, 
+                      @FromDate   DATETIME, 
+                      @ToDate     DATETIME, 
+                      @FullName   NVARCHAR(100), 
+                      @Gender     TINYINT, 
+                      @DayOfBirth DATE, 
+                      @Address    NVARCHAR(500),
+					  @ID int 
+AS
+     BEGIN
+         UPDATE dbo.[User]
+         SET
+             UserName = @UserName, -- VARCHAR
+             PassWord = @PassWord, -- VARCHAR
+             Type = @Type, -- INT
+             Enable = @Enable, -- BIT
+             FromDate = @FromDate, -- DATETIME
+             ToDate = @ToDate -- DATETIME
+
+         
+         DECLARE @IDUser INT= 0;
+         SELECT @IDUser = SCOPE_IDENTITY();
+         IF @IDUser > 0
+            AND @Type = 3
+             BEGIN
+                 DECLARE @CodeStudent VARCHAR(100);
+                 SET @CodeStudent = 'SV'+CAST(@IDUser AS VARCHAR(10));
+                 INSERT INTO dbo.Student(Code, FullName, Gender, DayOfBirth, Address, UserID)
+                 VALUES
+                 (@CodeStudent, -- Code - 
+                  @FullName, -- FullName - NVARCHAR
+                  @Gender, -- Gender - TINYINT
+                  @DayOfBirth, -- DayOfBirth - DATE
+                  @Address, -- Address - NVARCHAR
+                  @IDUser -- UserID - INT
+                 );
+             END;
      END;
 GO

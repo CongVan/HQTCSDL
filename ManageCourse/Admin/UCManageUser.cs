@@ -18,7 +18,8 @@ namespace Admin
 
         public delegate void ActionUpDateDelegate(string id);
         public static event ActionUpDateDelegate ActionUpDate;
-
+        
+       
         public UCManageUser()
         {
             InitializeComponent();
@@ -28,7 +29,6 @@ namespace Admin
             this.AutoSize = true;
             this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left);
             LoadData();
-
             
         }
         private void LoadData()
