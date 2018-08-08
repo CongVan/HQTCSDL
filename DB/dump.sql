@@ -90,6 +90,18 @@ AS
                AND u.PassWord = @PassWord;
      END;
 GO
+<<<<<<< HEAD
+CREATE PROC InsertUser @UserName   VARCHAR(100), 
+                       @PassWord   VARCHAR(100), 
+                       @Type       INT, 
+                       @Enable     BIT, 
+                       @FromDate   DATETIME, 
+                       @ToDate     DATETIME, 
+                       @FullName   NVARCHAR(100), 
+                       @Gender     TINYINT, 
+                       @DayOfBirth DATE, 
+                       @Address    NVARCHAR(500)
+=======
 ALTER PROC InsertUser @UserName   VARCHAR(100), 
                       @PassWord   VARCHAR(100), 
                       @Type       INT, 
@@ -100,6 +112,7 @@ ALTER PROC InsertUser @UserName   VARCHAR(100),
                       @Gender     TINYINT, 
                       @DayOfBirth DATE, 
                       @Address    NVARCHAR(500)
+>>>>>>> 0a95ae9c23d197c47ad185f61610785df700b950
 AS
      BEGIN
          INSERT INTO dbo.[User]
@@ -136,7 +149,7 @@ AS
              END;
      END;
 GO
-ALTER PROC GetAllUser
+CREATE PROC GetAllUser
 AS
      BEGIN
          SELECT ID, UserName,
