@@ -4,7 +4,7 @@ USE ManageCourse;
 GO
 CREATE TABLE [User]
 (ID       INT IDENTITY(1, 1) PRIMARY KEY, 
- UserName     VARCHAR(100), --ten dang nhap
+ UserName VARCHAR(100), --ten dang nhap
  PassWord VARCHAR(100), --
  Type     INT, --1:Admin, 2:Teacher, 3: Student
  Enable   BIT DEFAULT 1, 
@@ -14,7 +14,7 @@ CREATE TABLE [User]
 GO
 CREATE TABLE Student
 (ID         INT IDENTITY(1, 1) PRIMARY KEY, --ID
- Code       INT, --Mã sinh viên
+ Code       VARCHAR(100), --Mã sinh viên
  FullName   NVARCHAR(100), --Tên sinh viên
  Gender     TINYINT, --1: Nam, 2: Nu
  DayOfBirth DATE, --Ngày sinh
@@ -25,7 +25,7 @@ CREATE TABLE Student
 GO
 CREATE TABLE Major--Bảng chuyên ngành
 (ID            INT IDENTITY(1, 1) PRIMARY KEY, 
- Code          INT, --Mã chuyên ngành
+ Code          VARCHAR(100), --Mã chuyên ngành
  Name          NVARCHAR(200), --Tên chuyên ngành
  TotalStudied  INT, --Tổng số sinh viên theo học
  NumberTopical INT, -- số chuyên đề bắt buộc của mỗi chuyên ngành
@@ -33,7 +33,7 @@ CREATE TABLE Major--Bảng chuyên ngành
 GO
 CREATE TABLE Topical -- Chuyên đề
 (ID            INT IDENTITY(1, 1) PRIMARY KEY, 
- Code          INT, --Mã chuyên đề
+ Code          VARCHAR(100), --Mã chuyên đề
  Name          NVARCHAR(200), --Tên chuyên đề
  Deadline      DATETIME, --Deadline của mỗi chuyên đề
  NumberTeam    INT, --Số lượng nhóm
@@ -64,9 +64,7 @@ GO
 INSERT INTO dbo.[User]
 (
 --ID - this column value is auto-generated
-UserName, 
-PassWord, 
-Type
+UserName, PassWord, Type
 )
 VALUES
 (
@@ -92,27 +90,83 @@ CREATE PROC GetUser @UserName VARCHAR(100),
                     @PassWord VARCHAR(100)
 AS
      BEGIN
-         SELECT u.UserName, 
-                u.PassWord, 
-                u.Type
+         SELECT u.UserName, u.PassWord, u.Type
          FROM [dbo].[User] u
          WHERE u.UserName = @UserName
                AND u.PassWord = @PassWord;
      END;
 GO
-
-CREATE PROC InsertUser
-@UserName varchar(100),
-@PassWord varchar(100),
-@Type int,
-@Enable   BIT, 
-@FromDate DATETIME, 
-@ToDate   DATETIME,
-@FullName   NVARCHAR(100), 
-@Gender     TINYINT, 
-@DayOfBirth DATE, 
-@Address    NVARCHAR(500)
+ALTER PROC InsertUser @UserName   VARCHAR(100), 
+                       @PassWord   VARCHAR(100), 
+                       @Type       INT, 
+                       @Enable     BIT, 
+                       @FromDate   DATETIME, 
+                       @ToDate     DATETIME, 
+                       @FullName   NVARCHAR(100), 
+                       @Gender     TINYINT, 
+                       @DayOfBirth DATE, 
+                       @Address    NVARCHAR(500)
+AS
+     BEGIN
+         INSERT INTO dbo.[User]
+         (
+         --ID - this column value is auto-generated
+         UserName, PassWord, Type, Enable, FromDate, ToDate
+         )
+         VALUES
+         (
+         -- ID - INT
+         @UserName, -- UserName - VARCHAR
+         @PassWord, -- PassWord - VARCHAR
+         @Type, -- Type - INT
+         @Enable, -- Enable - BIT
+         @FromDate, -- FromDate - DATETIME
+         @ToDate -- ToDate - DATETIME
+         );
+         DECLARE @IDUser INT= 0;
+         SELECT @IDUser = SCOPE_IDENTITY();
+         IF @IDUser > 0
+            AND @Type = 3
+             BEGIN
+			 DECLARE @CodeStudent varchar(100);
+			 SET @CodeStudent='SV'+CAST(@IDUser AS varchar(10))
+                 INSERT INTO dbo.Student(Code, FullName, Gender, DayOfBirth, Address, UserID)
+             VALUES
+                 (@CodeStudent, -- Code - 
+                  @FullName, -- FullName - NVARCHAR
+                  @Gender, -- Gender - TINYINT
+                  @DayOfBirth, -- DayOfBirth - DATE
+                  @Address, -- Address - NVARCHAR
+                  @IDUser -- UserID - INT
+                 );
+             END;
+     END;
+GO
+ALTER PROC GetAllUser
+AS
+     BEGIN
+         SELECT ID, UserName,
+                    CASE Type
+                        WHEN 1 THEN N'Admin'
+                        WHEN 2 THEN N'Giáo viên'
+                        WHEN 3 THEN N'Sinh viên'
+                        ELSE ''
+                    END 'Type',CASE Enable WHEN 1 THEN N'Kích hoạt' ELSE N'Hủy' END 'Enable', FromDate, ToDate
+         FROM [User];
+     END;
+GO
+CREATE PROC DeleteUser
+@ID int
 AS
 BEGIN
+	DECLARE @Type int,@IDStudent int  
+
+	SELECT @Type=u.Type,@IDStudent=u.ID FROM dbo.[User] u WHERE u.ID=@ID
 	
+	DELETE dbo.[User] WHERE ID=@ID
+
+	IF @Type=3
+	BEGIN
+		DELETE dbo.Student WHERE dbo.Student.ID=@IDStudent
+	END
 END

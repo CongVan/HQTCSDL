@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Conector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -62,9 +64,63 @@ namespace Admin
         {
             string userName = txtUserName.Text;
             string passWord = txtPassWord.Text;
-            
-            
+            int Type = int.Parse(cbbType.SelectedValue.ToString());
+            int Enable = int.Parse(cbbStatus.SelectedValue.ToString());
+            string fromDate = Enable==0?dtpFromDate.Value.ToString("yyyy/MM/dd"):null;
+            string toDate = Enable==0?dtpToDate.Value.ToString("yyyy/MM/dd"):null;
+            string fullName = txtFullName.Text;
+            int Gender = int.Parse(cbbGender.SelectedValue.ToString());
+            string dayOfBirth = Type==3?dtpDayOfBirth.Value.ToString("yyyy/MM/dd"):null;
+            string address = txtAdress.Text;
 
+            var conn = new SqlConnection(DBEntity.GetConnection());
+            conn.Open();
+            var cmd = new SqlCommand("InsertUser", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@UserName",userName);
+            cmd.Parameters.AddWithValue("@PassWord",passWord);
+            cmd.Parameters.AddWithValue("@Type",Type);
+            cmd.Parameters.AddWithValue("@Enable",Enable);
+            if (fromDate == null)
+            {
+                cmd.Parameters.AddWithValue("@FromDate", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@FromDate", fromDate);
+            }
+
+            if (toDate == null)
+            {
+                cmd.Parameters.AddWithValue("@ToDate", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@ToDate", toDate);
+            }
+            cmd.Parameters.AddWithValue("@FullName",fullName);
+            cmd.Parameters.AddWithValue("@Gender",Gender);
+            if (dayOfBirth == null)
+            {
+                cmd.Parameters.AddWithValue("@DayOfBirth", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@DayOfBirth", dayOfBirth);
+            }
+            //cmd.Parameters.AddWithValue("@DayOfBirth",dayOfBirth);
+            cmd.Parameters.AddWithValue("@Address",address);
+
+            int count = cmd.ExecuteNonQuery();
+            conn.Close();
+            if (count > 0)
+            {
+                MessageBox.Show(null, "Tạo tài khoản thành công!", "Thông báo");
+            }
+            else
+            {
+                MessageBox.Show(null, "Tạo tài khoản thất bại!", "Thông báo");
+            }
 
         }
 

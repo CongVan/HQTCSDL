@@ -27,7 +27,8 @@ namespace Admin
         {
             var conn = new SqlConnection(connectionString);
             conn.Open();
-            var cmd = new SqlCommand("SELECT ID,UserName,Type,Enable,FromDate,ToDate FROM [User] ", conn);          
+            var cmd = new SqlCommand("GetAllUser", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
             var tb = new DataTable();
             var adpt = new SqlDataAdapter(cmd);
             adpt.Fill(tb);
@@ -42,6 +43,37 @@ namespace Admin
         {
             var frm = new frmAddUser();
             frm.Show();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Xác nhận xóa?", "Xác nhận", MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+            {
+                int rowIndex = dgvUsers.CurrentCell.RowIndex;
+                if ( rowIndex > 0)
+                {
+                    var id = dgvUsers.Rows[rowIndex].Cells[0].Value.ToString();
+                    var conn = new SqlConnection(connectionString);
+                    conn.Open();
+                    var cmd = new SqlCommand("DeleteUser", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Xóa thành công!", "Thông báo");
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa thất bại!", "Thông báo");
+                    }
+                }
+            }
         }
     }
 }

@@ -115,7 +115,7 @@
             this.groupBox1.Location = new System.Drawing.Point(0, 41);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(374, 227);
+            this.groupBox1.Size = new System.Drawing.Size(374, 232);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin tài khoản";
@@ -199,7 +199,7 @@
             this.grbDetailMore.Controls.Add(this.label8);
             this.grbDetailMore.Controls.Add(this.txtFullName);
             this.grbDetailMore.Dock = System.Windows.Forms.DockStyle.Top;
-            this.grbDetailMore.Location = new System.Drawing.Point(0, 268);
+            this.grbDetailMore.Location = new System.Drawing.Point(0, 273);
             this.grbDetailMore.Name = "grbDetailMore";
             this.grbDetailMore.Size = new System.Drawing.Size(374, 176);
             this.grbDetailMore.TabIndex = 17;
