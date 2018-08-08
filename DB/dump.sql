@@ -96,7 +96,7 @@ AS
                AND u.PassWord = @PassWord;
      END;
 GO
-ALTER PROC InsertUser @UserName   VARCHAR(100), 
+CREATE PROC InsertUser @UserName   VARCHAR(100), 
                        @PassWord   VARCHAR(100), 
                        @Type       INT, 
                        @Enable     BIT, 
@@ -142,7 +142,7 @@ AS
              END;
      END;
 GO
-ALTER PROC GetAllUser
+CREATE PROC GetAllUser
 AS
      BEGIN
          SELECT ID, UserName,
