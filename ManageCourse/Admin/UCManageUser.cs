@@ -99,8 +99,7 @@ namespace Admin
                 var id = dgvUsers.Rows[rowIndex].Cells[0].Value.ToString();
 
                 var form = new frmAddUser();
-                
-               
+                form.InsertSuccess += new frmAddUser.ReloadDataDelegate(Frm_InsertSuccess);
                 form.Show();
                 ActionUpDate(id);
             }

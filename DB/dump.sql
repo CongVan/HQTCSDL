@@ -221,23 +221,20 @@ AS
              FromDate = @FromDate, -- DATETIME
              ToDate = @ToDate -- DATETIME
 
+         WHERE dbo.[User].ID=@ID
          
-         DECLARE @IDUser INT= 0;
-         SELECT @IDUser = SCOPE_IDENTITY();
-         IF @IDUser > 0
-            AND @Type = 3
+         IF  @Type = 3
              BEGIN
-                 DECLARE @CodeStudent VARCHAR(100);
-                 SET @CodeStudent = 'SV'+CAST(@IDUser AS VARCHAR(10));
-                 INSERT INTO dbo.Student(Code, FullName, Gender, DayOfBirth, Address, UserID)
-                 VALUES
-                 (@CodeStudent, -- Code - 
-                  @FullName, -- FullName - NVARCHAR
-                  @Gender, -- Gender - TINYINT
-                  @DayOfBirth, -- DayOfBirth - DATE
-                  @Address, -- Address - NVARCHAR
-                  @IDUser -- UserID - INT
-                 );
+                 UPDATE dbo.Student
+                 SET
+                    
+                     dbo.Student.FullName = @FullName, -- NVARCHAR
+                     dbo.Student.Gender = @Gender, -- TINYINT
+                     dbo.Student.DayOfBirth = @DayOfBirth, -- DATE
+                     dbo.Student.Address = @Address -- NVARCHAR
+                     --dbo.Student.MajorID = 0, -- INT
+                     where dbo.Student.UserID = @ID -- INT
+
              END;
      END;
 GO

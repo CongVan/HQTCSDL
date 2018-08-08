@@ -67,6 +67,7 @@ namespace Admin
         private void LoadDataUpdate(string id)
         {
             idUserUpdate = id;
+            actionMain = ActionType.Update;
             lblTitleMain.Text = "CẬP NHẬT TÀI KHOẢN";
             this.Text = "Cập nhật tài khoản";
             var conn = new SqlConnection(DBEntity.GetConnection());
