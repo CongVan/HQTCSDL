@@ -32,7 +32,7 @@
             this.btnManagerUser = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnManageMajor = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlContainer = new System.Windows.Forms.Panel();
@@ -47,7 +47,7 @@
             this.pnlMenu.Controls.Add(this.btnManagerUser);
             this.pnlMenu.Controls.Add(this.btnLogout);
             this.pnlMenu.Controls.Add(this.button3);
-            this.pnlMenu.Controls.Add(this.button2);
+            this.pnlMenu.Controls.Add(this.btnManageMajor);
             this.pnlMenu.Controls.Add(this.panel3);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.ForeColor = System.Drawing.Color.Coral;
@@ -95,17 +95,18 @@
             this.button3.Text = "Chuyên đề";
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnManageMajor
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(8, 154);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(205, 58);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Chuyên ngành";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnManageMajor.BackColor = System.Drawing.Color.White;
+            this.btnManageMajor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManageMajor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageMajor.Location = new System.Drawing.Point(8, 154);
+            this.btnManageMajor.Name = "btnManageMajor";
+            this.btnManageMajor.Size = new System.Drawing.Size(205, 58);
+            this.btnManageMajor.TabIndex = 3;
+            this.btnManageMajor.Text = "Chuyên ngành";
+            this.btnManageMajor.UseVisualStyleBackColor = false;
+            this.btnManageMajor.Click += new System.EventHandler(this.btnManageMajor_Click);
             // 
             // panel3
             // 
@@ -145,6 +146,7 @@
             this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.pnlMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang quản trị Admin";
@@ -163,7 +165,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnManageMajor;
         private System.Windows.Forms.Button btnManagerUser;
     }
 }
