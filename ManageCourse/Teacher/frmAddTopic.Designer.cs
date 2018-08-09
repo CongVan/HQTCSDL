@@ -30,6 +30,7 @@
         {
             this.lblTitleMain = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTopicName = new System.Windows.Forms.TextBox();
             this.txtTopicCode = new System.Windows.Forms.TextBox();
             this.cbbMajor = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,16 +40,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtTopicName = new System.Windows.Forms.TextBox();
-            this.dtpDeadline = new System.Windows.Forms.DateTimePicker();
-            this.mudNumberTeam = new System.Windows.Forms.NumericUpDown();
             this.mudNumberStudent = new System.Windows.Forms.NumericUpDown();
+            this.mudNumberTeam = new System.Windows.Forms.NumericUpDown();
+            this.dtpDeadline = new System.Windows.Forms.DateTimePicker();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mudNumberTeam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberStudent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mudNumberTeam)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitleMain
@@ -79,6 +79,13 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chuyên đề";
+            // 
+            // txtTopicName
+            // 
+            this.txtTopicName.Location = new System.Drawing.Point(149, 123);
+            this.txtTopicName.Name = "txtTopicName";
+            this.txtTopicName.Size = new System.Drawing.Size(222, 22);
+            this.txtTopicName.TabIndex = 5;
             // 
             // txtTopicCode
             // 
@@ -165,20 +172,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin chi tiết";
             // 
-            // txtTopicName
+            // mudNumberStudent
             // 
-            this.txtTopicName.Location = new System.Drawing.Point(149, 123);
-            this.txtTopicName.Name = "txtTopicName";
-            this.txtTopicName.Size = new System.Drawing.Size(222, 22);
-            this.txtTopicName.TabIndex = 5;
-            // 
-            // dtpDeadline
-            // 
-            this.dtpDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDeadline.Location = new System.Drawing.Point(149, 37);
-            this.dtpDeadline.Name = "dtpDeadline";
-            this.dtpDeadline.Size = new System.Drawing.Size(144, 22);
-            this.dtpDeadline.TabIndex = 6;
+            this.mudNumberStudent.Location = new System.Drawing.Point(149, 123);
+            this.mudNumberStudent.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.mudNumberStudent.Name = "mudNumberStudent";
+            this.mudNumberStudent.Size = new System.Drawing.Size(144, 22);
+            this.mudNumberStudent.TabIndex = 8;
             // 
             // mudNumberTeam
             // 
@@ -187,12 +191,14 @@
             this.mudNumberTeam.Size = new System.Drawing.Size(144, 22);
             this.mudNumberTeam.TabIndex = 7;
             // 
-            // mudNumberStudent
+            // dtpDeadline
             // 
-            this.mudNumberStudent.Location = new System.Drawing.Point(149, 123);
-            this.mudNumberStudent.Name = "mudNumberStudent";
-            this.mudNumberStudent.Size = new System.Drawing.Size(144, 22);
-            this.mudNumberStudent.TabIndex = 8;
+            this.dtpDeadline.CustomFormat = "";
+            this.dtpDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDeadline.Location = new System.Drawing.Point(149, 37);
+            this.dtpDeadline.Name = "dtpDeadline";
+            this.dtpDeadline.Size = new System.Drawing.Size(144, 22);
+            this.dtpDeadline.TabIndex = 6;
             // 
             // btnSubmit
             // 
@@ -244,8 +250,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mudNumberTeam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberStudent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mudNumberTeam)).EndInit();
             this.ResumeLayout(false);
 
         }

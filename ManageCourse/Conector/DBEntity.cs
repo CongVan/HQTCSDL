@@ -12,8 +12,8 @@ namespace Conector
     {
         public static string GetConnection()
         {
-            //string dataSource = @"DESKTOP-K5LOBGC";
-            string dataSource = @"VANHC\SQLEXPRESS";
+            string dataSource = @"DESKTOP-K5LOBGC";
+            //string dataSource = @"VANHC\SQLEXPRESS";
             string connectionString = @"Data Source="+ dataSource + ";Initial Catalog=ManageCourse;Integrated Security=True";
             return connectionString;
         }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,34 @@ namespace Teacher
 
             if (tb == DialogResult.Yes)
             {
-                MessageBox.Show("Chức năng đang được bảo trì!", "Hãy thử lại sau", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string connectionString = Conector.DBEntity.GetConnection();
+                SqlConnection conn = new SqlConnection(connectionString);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "InsertTopic";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = txtTopicCode.Text;
+                cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = txtTopicName.Text;
+                cmd.Parameters.Add("@Deadline", SqlDbType.DateTime).Value = dtpDeadline.Value.ToString("yyyy-MM-dd");
+                cmd.Parameters.Add("@NumberTeam", SqlDbType.Int).Value = int.Parse(mudNumberTeam.Value.ToString());
+                cmd.Parameters.Add("@NumberStudent", SqlDbType.Int).Value = int.Parse(mudNumberStudent.Value.ToString());
+                cmd.Parameters.Add("@Enable", SqlDbType.Bit).Value = "True";
+                cmd.Parameters.Add("@MajorID", SqlDbType.Int).Value = int.Parse(cbbMajor.SelectedValue.ToString());
+                cmd.Parameters.Add("@TeacherID", SqlDbType.Int).Value = 1;  //  we have to change to CurUser
+
+                cmd.Connection = conn;
+                conn.Open();
+                int count = cmd.ExecuteNonQuery();
+
+                if (count > 0)
+                {
+                    MessageBox.Show("Thêm chuyên đề thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm chuyên đề không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                conn.Close();
             }
             else
             {
@@ -42,10 +70,7 @@ namespace Teacher
 
         private void frmAddTopic_Load(object sender, EventArgs e)
         {
-            string dataSource = @"DESKTOP-K5LOBGC";
-            string connectionString = @"Data Source=" + dataSource + ";Initial Catalog=ManageCourse;Integrated Security=True";
-
-
+            string connectionString = Conector.DBEntity.GetConnection();
             SqlConnection conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
