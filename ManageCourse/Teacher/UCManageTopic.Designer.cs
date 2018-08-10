@@ -36,8 +36,9 @@
             this.dgvTopics = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TopicCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TopicName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MajorCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MajorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Deadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberTeam = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,6 +87,7 @@
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtKeyword
             // 
@@ -113,8 +115,9 @@
             this.dgvTopics.BackgroundColor = System.Drawing.Color.White;
             this.dgvTopics.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTopics.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Code,
+            this.TopicCode,
             this.TopicName,
+            this.MajorCode,
             this.MajorName,
             this.Deadline,
             this.NumberTeam,
@@ -155,14 +158,15 @@
             this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // Code
+            // TopicCode
             // 
-            this.Code.DataPropertyName = "Code";
-            this.Code.HeaderText = "Mã chuyên đề";
-            this.Code.Name = "Code";
-            this.Code.ReadOnly = true;
-            this.Code.Width = 150;
+            this.TopicCode.DataPropertyName = "TopicCode";
+            this.TopicCode.HeaderText = "Mã chuyên đề";
+            this.TopicCode.Name = "TopicCode";
+            this.TopicCode.ReadOnly = true;
+            this.TopicCode.Width = 150;
             // 
             // TopicName
             // 
@@ -171,6 +175,14 @@
             this.TopicName.Name = "TopicName";
             this.TopicName.ReadOnly = true;
             this.TopicName.Width = 300;
+            // 
+            // MajorCode
+            // 
+            this.MajorCode.DataPropertyName = "MajorCode";
+            this.MajorCode.HeaderText = "Mã ngành";
+            this.MajorCode.Name = "MajorCode";
+            this.MajorCode.ReadOnly = true;
+            this.MajorCode.Width = 150;
             // 
             // MajorName
             // 
@@ -258,8 +270,9 @@
         private System.Windows.Forms.DataGridView dgvTopics;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TopicCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn TopicName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MajorCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn MajorName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberTeam;
