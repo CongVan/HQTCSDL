@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblTitleMain = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTopicName = new System.Windows.Forms.TextBox();
@@ -45,10 +46,12 @@
             this.dtpDeadline = new System.Windows.Forms.DateTimePicker();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ErrorChecker = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberTeam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorChecker)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitleMain
@@ -86,6 +89,7 @@
             this.txtTopicName.Name = "txtTopicName";
             this.txtTopicName.Size = new System.Drawing.Size(222, 22);
             this.txtTopicName.TabIndex = 5;
+            this.txtTopicName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTopicName_KeyPress);
             // 
             // txtTopicCode
             // 
@@ -93,6 +97,7 @@
             this.txtTopicCode.Name = "txtTopicCode";
             this.txtTopicCode.Size = new System.Drawing.Size(223, 22);
             this.txtTopicCode.TabIndex = 4;
+            this.txtTopicCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTopicCode_KeyPress);
             // 
             // cbbMajor
             // 
@@ -227,6 +232,10 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // ErrorChecker
+            // 
+            this.ErrorChecker.ContainerControl = this;
+            // 
             // frmAddTopic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -252,6 +261,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberStudent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberTeam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorChecker)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -275,5 +285,6 @@
         private System.Windows.Forms.NumericUpDown mudNumberTeam;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ErrorProvider ErrorChecker;
     }
 }

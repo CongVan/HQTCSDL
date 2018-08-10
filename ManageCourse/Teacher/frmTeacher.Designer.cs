@@ -66,6 +66,7 @@
             this.btnTopicInfo.TabIndex = 5;
             this.btnTopicInfo.Text = "Xem thông tin chuyên đề";
             this.btnTopicInfo.UseVisualStyleBackColor = false;
+            this.btnTopicInfo.Click += new System.EventHandler(this.btnTopicInfo_Click);
             // 
             // btnOpenTopic
             // 
@@ -108,6 +109,7 @@
             this.btnLookUpScore.TabIndex = 2;
             this.btnLookUpScore.Text = "Tra cứu điểm";
             this.btnLookUpScore.UseVisualStyleBackColor = false;
+            this.btnLookUpScore.Click += new System.EventHandler(this.btnLookUpScore_Click);
             // 
             // label1
             // 
@@ -141,6 +143,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang giáo viên";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTeacher_FormClosed);
+            this.SizeChanged += new System.EventHandler(this.frmTeacher_SizeChanged);
             this.pnlMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 

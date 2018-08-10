@@ -34,5 +34,39 @@ namespace Teacher
             frmAddTopic frm = new frmAddTopic();
             frm.ShowDialog();
         }
+
+
+        private void btnTopicInfo_Click(object sender, EventArgs e)
+        {
+            var control = new UCManageTopic();
+            control.Width = pnlContainer.Width;
+            control.Height = pnlContainer.Height;
+            pnlContainer.Controls.Clear();
+            pnlContainer.Controls.Add(control);
+        }
+
+
+        private void btnLookUpScore_Click(object sender, EventArgs e)
+        {
+            var control = new UCManageStudent();
+            control.Width = pnlContainer.Width;
+            control.Height = pnlContainer.Height;
+            pnlContainer.Controls.Clear();
+            pnlContainer.Controls.Add(control);
+        }
+
+
+        // resize UserControl after resized frmTeacher
+        private void frmTeacher_SizeChanged(object sender, EventArgs e)
+        {
+            if (pnlContainer.Controls.Count > 0)
+            {
+                foreach (Control control in pnlContainer.Controls)
+                {
+                    control.Width = pnlContainer.Width;
+                    control.Height = pnlContainer.Height;
+                }
+            }
+        }
     }
 }
