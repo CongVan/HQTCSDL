@@ -76,6 +76,12 @@
     <Compile Include="UCManageMajor.Designer.cs">
       <DependentUpon>UCManageMajor.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCManageTopic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCManageTopic.Designer.cs">
+      <DependentUpon>UCManageTopic.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCManageUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCManageMajor.resx">
       <DependentUpon>UCManageMajor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCManageTopic.resx">
+      <DependentUpon>UCManageTopic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCManageUser.resx">
       <DependentUpon>UCManageUser.cs</DependentUpon>
