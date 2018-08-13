@@ -91,8 +91,8 @@ namespace Admin
             {
                 string[] fd = tb.Rows[0]["FromDate"].ToString().Split('/');
                 string[] td = tb.Rows[0]["ToDate"].ToString().Split('/');
-                dtpFromDate.Value = new DateTime(int.Parse(fd[0]),int.Parse(fd[1]),int.Parse(fd[2]));
-                dtpToDate.Value = new DateTime(int.Parse(td[0]), int.Parse(td[1]), int.Parse(td[2]));
+                dtpFromDate.Value = fd.Length == 3 ? new DateTime(int.Parse(fd[0]), int.Parse(fd[1]), int.Parse(fd[2])) : DateTime.Now;
+                dtpToDate.Value = td.Length == 3 ? new DateTime(int.Parse(td[0]), int.Parse(td[1]), int.Parse(td[2])) : DateTime.Now;
             }
             if (cbbType.SelectedValue.ToString() == "3")
             {
@@ -111,7 +111,7 @@ namespace Admin
                 txtAdress.Text= tb.Rows[0]["Address"].ToString();
                 cbbGender.SelectedValue= tb.Rows[0]["Gender"].ToString();
                 string[] dob = tb.Rows[0]["DayOfBirth"].ToString().Split('/');
-                dtpDayOfBirth.Value = new DateTime(int.Parse(dob[0]), int.Parse(dob[1]), int.Parse(dob[2]));
+                dtpDayOfBirth.Value = dob.Length==3?new DateTime(int.Parse(dob[0]), int.Parse(dob[1]), int.Parse(dob[2])):DateTime.Now;
 
             }
 

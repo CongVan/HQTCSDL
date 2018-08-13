@@ -44,5 +44,14 @@ namespace Admin
             pnlContainer.Controls.Clear();
             pnlContainer.Controls.Add(control);
         }
+
+        private void btnManageTopic_Click(object sender, EventArgs e)
+        {
+            var control = new UCManageTopic();
+            control.Width = pnlContainer.Width;
+            control.Height = pnlContainer.Height;
+            pnlContainer.Controls.Clear();
+            pnlContainer.Controls.Add(control);
+        }
     }
 }
