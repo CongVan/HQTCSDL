@@ -45,7 +45,7 @@ namespace Teacher
             // Data is accessible through the DataReader object here.
 
             DataTable dt = new DataTable();
-            //dt.Columns.Add("ID", typeof(int));
+            dt.Columns.Add("ID", typeof(int));
             dt.Columns.Add("Code", typeof(string));
             dt.Columns.Add("FullName", typeof(string));
             dt.Columns.Add("Gender", typeof(string));
@@ -56,20 +56,20 @@ namespace Teacher
             while (reader.Read())
             {
                 DataRow dr = dt.NewRow();
-                //dr[0] = reader.GetInt32(reader.GetOrdinal("ID"));
-                dr[0] = reader.GetString(reader.GetOrdinal("Code"));
-                dr[1] = reader.GetString(reader.GetOrdinal("FullName"));
+                dr[0] = reader.GetInt32(reader.GetOrdinal("ID"));
+                dr[1] = reader.GetString(reader.GetOrdinal("Code"));
+                dr[2] = reader.GetString(reader.GetOrdinal("FullName"));
                 if (reader.GetInt32(reader.GetOrdinal("Gender")) == 1)
                 {
-                    dr[2] = "Nam";
+                    dr[3] = "Nam";
                 }
                 if (reader.GetInt32(reader.GetOrdinal("Gender")) == 2)
                 {
-                    dr[2] = "Nữ";
+                    dr[3] = "Nữ";
                 }
-                dr[3] = reader.GetDateTime(reader.GetOrdinal("DayOfBirth"));
-                dr[4] = reader.GetString(reader.GetOrdinal("Address"));
-                dr[5] = reader.GetString(reader.GetOrdinal("MajorName"));
+                dr[4] = reader.GetDateTime(reader.GetOrdinal("DayOfBirth"));
+                dr[5] = reader.GetString(reader.GetOrdinal("Address"));
+                dr[6] = reader.GetString(reader.GetOrdinal("MajorName"));
                 dt.Rows.Add(dr);
             }
 
@@ -86,7 +86,8 @@ namespace Teacher
             if (index > 0)
             {
                 frmScoreDetails frm = new frmScoreDetails();
-                frm.lbStudentID.Text = dgvStudents.SelectedRows[0].Cells["Code"].Value.ToString();
+                frm.lbStudentID.Text = dgvStudents.SelectedRows[0].Cells["ID"].Value.ToString();
+                frm.lbStudentCode.Text = dgvStudents.SelectedRows[0].Cells["Code"].Value.ToString();
                 frm.lbStudentName.Text = dgvStudents.SelectedRows[0].Cells["FullName"].Value.ToString();
                 frm.ShowDialog();
             }

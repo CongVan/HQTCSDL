@@ -59,7 +59,7 @@ namespace Teacher
 
                         if (count > 0)
                         {
-                            MessageBox.Show("Thêm chuyên đề thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(string.Format("Thêm chuyên đề {0} thành công!", txtTopicName.Text), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {

@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitleMain = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbStudentID = new System.Windows.Forms.Label();
             this.dtpYear = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lbStudentName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lbStudentID = new System.Windows.Forms.Label();
+            this.lbStudentCode = new System.Windows.Forms.Label();
             this.cbbSemester = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvScore = new System.Windows.Forms.DataGridView();
-            this.TopicID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TopicCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TopicName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Point = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -69,12 +70,13 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbStudentID);
             this.panel1.Controls.Add(this.dtpYear);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.lbStudentName);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.lbStudentID);
+            this.panel1.Controls.Add(this.lbStudentCode);
             this.panel1.Controls.Add(this.cbbSemester);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -83,6 +85,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(754, 114);
             this.panel1.TabIndex = 2;
+            // 
+            // lbStudentID
+            // 
+            this.lbStudentID.AutoSize = true;
+            this.lbStudentID.Location = new System.Drawing.Point(636, 15);
+            this.lbStudentID.Name = "lbStudentID";
+            this.lbStudentID.Size = new System.Drawing.Size(77, 16);
+            this.lbStudentID.TabIndex = 10;
+            this.lbStudentID.Text = "lbStudentID";
+            this.lbStudentID.Visible = false;
             // 
             // dtpYear
             // 
@@ -106,6 +118,7 @@
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lbStudentName
             // 
@@ -136,16 +149,16 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Mã sinh viên";
             // 
-            // lbStudentID
+            // lbStudentCode
             // 
-            this.lbStudentID.AutoSize = true;
-            this.lbStudentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStudentID.ForeColor = System.Drawing.Color.Green;
-            this.lbStudentID.Location = new System.Drawing.Point(140, 25);
-            this.lbStudentID.Name = "lbStudentID";
-            this.lbStudentID.Size = new System.Drawing.Size(88, 16);
-            this.lbStudentID.TabIndex = 6;
-            this.lbStudentID.Text = "lbStudentID";
+            this.lbStudentCode.AutoSize = true;
+            this.lbStudentCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStudentCode.ForeColor = System.Drawing.Color.Green;
+            this.lbStudentCode.Location = new System.Drawing.Point(140, 25);
+            this.lbStudentCode.Name = "lbStudentCode";
+            this.lbStudentCode.Size = new System.Drawing.Size(110, 16);
+            this.lbStudentCode.TabIndex = 6;
+            this.lbStudentCode.Text = "lbStudentCode";
             // 
             // cbbSemester
             // 
@@ -184,26 +197,26 @@
             this.dgvScore.AllowUserToResizeRows = false;
             this.dgvScore.BackgroundColor = System.Drawing.Color.White;
             this.dgvScore.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvScore.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TopicID,
+            this.TopicCode,
             this.TopicName,
-            this.Score});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvScore.DefaultCellStyle = dataGridViewCellStyle10;
+            this.Point});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvScore.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvScore.GridColor = System.Drawing.Color.White;
             this.dgvScore.Location = new System.Drawing.Point(30, 32);
             this.dgvScore.MultiSelect = false;
@@ -215,29 +228,29 @@
             this.dgvScore.Size = new System.Drawing.Size(546, 172);
             this.dgvScore.TabIndex = 3;
             // 
-            // TopicID
+            // TopicCode
             // 
-            this.TopicID.DataPropertyName = "TopicID";
-            this.TopicID.HeaderText = "Mã chuyên đề";
-            this.TopicID.Name = "TopicID";
-            this.TopicID.ReadOnly = true;
-            this.TopicID.Width = 150;
+            this.TopicCode.DataPropertyName = "TopicCode";
+            this.TopicCode.HeaderText = "Mã chuyên đề";
+            this.TopicCode.Name = "TopicCode";
+            this.TopicCode.ReadOnly = true;
+            this.TopicCode.Width = 150;
             // 
             // TopicName
             // 
             this.TopicName.DataPropertyName = "TopicName";
-            this.TopicName.HeaderText = "Chuyên đề";
+            this.TopicName.HeaderText = "Tên chuyên đề";
             this.TopicName.Name = "TopicName";
             this.TopicName.ReadOnly = true;
             this.TopicName.Width = 250;
             // 
-            // Score
+            // Point
             // 
-            this.Score.DataPropertyName = "Score";
-            this.Score.HeaderText = "Điểm";
-            this.Score.Name = "Score";
-            this.Score.ReadOnly = true;
-            this.Score.Width = 140;
+            this.Point.DataPropertyName = "Point";
+            this.Point.HeaderText = "Điểm";
+            this.Point.Name = "Point";
+            this.Point.ReadOnly = true;
+            this.Point.Width = 140;
             // 
             // groupBox1
             // 
@@ -292,16 +305,17 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvScore;
-        public System.Windows.Forms.Label lbStudentID;
+        public System.Windows.Forms.Label lbStudentCode;
         public System.Windows.Forms.Label lbStudentName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TopicID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TopicName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Score;
         private System.Windows.Forms.DateTimePicker dtpYear;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TopicCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TopicName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Point;
+        public System.Windows.Forms.Label lbStudentID;
     }
 }

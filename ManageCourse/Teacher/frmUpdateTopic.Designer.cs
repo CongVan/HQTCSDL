@@ -45,6 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lbMajorCode = new System.Windows.Forms.Label();
             this.ErrorChecker = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lbMajorID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberTeam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorChecker)).BeginInit();
@@ -204,12 +205,23 @@
             // 
             this.ErrorChecker.ContainerControl = this;
             // 
+            // lbMajorID
+            // 
+            this.lbMajorID.AutoSize = true;
+            this.lbMajorID.Location = new System.Drawing.Point(346, 78);
+            this.lbMajorID.Name = "lbMajorID";
+            this.lbMajorID.Size = new System.Drawing.Size(66, 16);
+            this.lbMajorID.TabIndex = 16;
+            this.lbMajorID.Text = "lbMajorID";
+            this.lbMajorID.Visible = false;
+            // 
             // frmUpdateTopic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(470, 455);
+            this.Controls.Add(this.lbMajorID);
             this.Controls.Add(this.lbMajorCode);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancel);
@@ -227,7 +239,7 @@
             this.Controls.Add(this.lblTitleMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmUpdateTopic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -258,5 +270,6 @@
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.Label lbMajorCode;
         private System.Windows.Forms.ErrorProvider ErrorChecker;
+        public System.Windows.Forms.Label lbMajorID;
     }
 }

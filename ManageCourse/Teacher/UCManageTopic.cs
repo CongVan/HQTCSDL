@@ -48,7 +48,7 @@ namespace Teacher
             // Data is accessible through the DataReader object here.
 
             DataTable dt = new DataTable();
-            //dt.Columns.Add("ID", typeof(int));
+            dt.Columns.Add("MajorID", typeof(int));
             dt.Columns.Add("TopicCode", typeof(string));
             dt.Columns.Add("TopicName", typeof(string));
             dt.Columns.Add("MajorCode", typeof(string));
@@ -63,24 +63,24 @@ namespace Teacher
             while (reader.Read())
             {
                 DataRow dr = dt.NewRow();
-                //dr[0] = reader.GetInt32(reader.GetOrdinal("ID"));
-                dr[0] = reader.GetString(reader.GetOrdinal("TopicCode"));
-                dr[1] = reader.GetString(reader.GetOrdinal("TopicName"));
-                dr[2] = reader.GetString(reader.GetOrdinal("MajorCode"));
-                dr[3] = reader.GetString(reader.GetOrdinal("MajorName"));
-                dr[4] = reader.GetDateTime(reader.GetOrdinal("Deadline"));
-                dr[5] = reader.GetInt32(reader.GetOrdinal("NumberTeam"));
-                dr[6] = reader.GetInt32(reader.GetOrdinal("NumberStudent"));
+                dr[0] = reader.GetInt32(reader.GetOrdinal("MajorID"));
+                dr[1] = reader.GetString(reader.GetOrdinal("TopicCode"));
+                dr[2] = reader.GetString(reader.GetOrdinal("TopicName"));
+                dr[3] = reader.GetString(reader.GetOrdinal("MajorCode"));
+                dr[4] = reader.GetString(reader.GetOrdinal("MajorName"));
+                dr[5] = reader.GetDateTime(reader.GetOrdinal("Deadline"));
+                dr[6] = reader.GetInt32(reader.GetOrdinal("NumberTeam"));
+                dr[7] = reader.GetInt32(reader.GetOrdinal("NumberStudent"));
                 if (reader.GetBoolean(reader.GetOrdinal("Enable")) == true)
                 {
-                    dr[7] = "Đang mở";
+                    dr[8] = "Đang mở";
                 }
                 if (reader.GetBoolean(reader.GetOrdinal("Enable")) == false)
                 {
-                    dr[7] = "Hủy";
+                    dr[8] = "Hủy";
                 }
-                //dr[8] = reader.GetDateTime(reader.GetOrdinal("FromDate"));
-                //dr[9] = reader.GetDateTime(reader.GetOrdinal("ToDate"));
+                //dr[9] = reader.GetDateTime(reader.GetOrdinal("FromDate"));
+                //dr[10] = reader.GetDateTime(reader.GetOrdinal("ToDate"));
                 dt.Rows.Add(dr);
             }
 
@@ -133,7 +133,7 @@ namespace Teacher
                 // Data is accessible through the DataReader object here.
 
                 DataTable dt = new DataTable();
-                //dt.Columns.Add("ID", typeof(int));
+                dt.Columns.Add("MajorID", typeof(int));
                 dt.Columns.Add("TopicCode", typeof(string));
                 dt.Columns.Add("TopicName", typeof(string));
                 dt.Columns.Add("MajorCode", typeof(string));
@@ -148,24 +148,24 @@ namespace Teacher
                 while (reader.Read())
                 {
                     DataRow dr = dt.NewRow();
-                    //dr[0] = reader.GetInt32(reader.GetOrdinal("ID"));
-                    dr[0] = reader.GetString(reader.GetOrdinal("TopicCode"));
-                    dr[1] = reader.GetString(reader.GetOrdinal("TopicName"));
-                    dr[2] = reader.GetString(reader.GetOrdinal("MajorCode"));
-                    dr[3] = reader.GetString(reader.GetOrdinal("MajorName"));
-                    dr[4] = reader.GetDateTime(reader.GetOrdinal("Deadline"));
-                    dr[5] = reader.GetInt32(reader.GetOrdinal("NumberTeam"));
-                    dr[6] = reader.GetInt32(reader.GetOrdinal("NumberStudent"));
+                    dr[0] = reader.GetInt32(reader.GetOrdinal("MajorID"));
+                    dr[1] = reader.GetString(reader.GetOrdinal("TopicCode"));
+                    dr[2] = reader.GetString(reader.GetOrdinal("TopicName"));
+                    dr[3] = reader.GetString(reader.GetOrdinal("MajorCode"));
+                    dr[4] = reader.GetString(reader.GetOrdinal("MajorName"));
+                    dr[5] = reader.GetDateTime(reader.GetOrdinal("Deadline"));
+                    dr[6] = reader.GetInt32(reader.GetOrdinal("NumberTeam"));
+                    dr[7] = reader.GetInt32(reader.GetOrdinal("NumberStudent"));
                     if (reader.GetBoolean(reader.GetOrdinal("Enable")) == true)
                     {
-                        dr[7] = "Đang mở";
+                        dr[8] = "Đang mở";
                     }
                     if (reader.GetBoolean(reader.GetOrdinal("Enable")) == false)
                     {
-                        dr[7] = "Hủy";
+                        dr[8] = "Hủy";
                     }
-                    //dr[8] = reader.GetDateTime(reader.GetOrdinal("FromDate"));
-                    //dr[9] = reader.GetDateTime(reader.GetOrdinal("ToDate"));
+                    //dr[9] = reader.GetDateTime(reader.GetOrdinal("FromDate"));
+                    //dr[10] = reader.GetDateTime(reader.GetOrdinal("ToDate"));
                     dt.Rows.Add(dr);
                 }
 
@@ -188,6 +188,7 @@ namespace Teacher
             {
                 frmUpdateTopic frm = new frmUpdateTopic();
                 frm.lbMajorCode.Text = dgvTopics.SelectedRows[0].Cells["MajorCode"].Value.ToString();
+                frm.lbMajorID.Text = dgvTopics.SelectedRows[0].Cells["MajorID"].Value.ToString();
                 frm.lbTopicCode.Text = dgvTopics.SelectedRows[0].Cells["TopicCode"].Value.ToString();
                 frm.lbTopicName.Text = dgvTopics.SelectedRows[0].Cells["TopicName"].Value.ToString();
                 frm.dtpDeadline.Value = (DateTime)dgvTopics.SelectedRows[0].Cells["Deadline"].Value;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,38 @@ namespace Teacher
 
                 if (tb == DialogResult.Yes)
                 {
-                    MessageBox.Show("Loading... ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        string connectionString = Conector.DBEntity.GetConnection();
+                        SqlConnection conn = new SqlConnection(connectionString);
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.CommandText = "UpdateTopic";
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("@MajorID", SqlDbType.Int).Value = int.Parse(lbMajorID.Text);
+                        cmd.Parameters.Add("@TopicCode", SqlDbType.VarChar).Value = lbTopicCode.Text;
+                        cmd.Parameters.Add("@Deadline", SqlDbType.DateTime).Value = dtpDeadline.Value.ToString("yyyy-MM-dd");
+                        cmd.Parameters.Add("@NumberTeam", SqlDbType.Int).Value = int.Parse(mudNumberTeam.Value.ToString());
+                        cmd.Parameters.Add("@NumberStudent", SqlDbType.Int).Value = int.Parse(mudNumberStudent.Value.ToString());
+
+                        cmd.Connection = conn;
+                        conn.Open();
+                        int count = cmd.ExecuteNonQuery();
+
+                        if (count > 0)
+                        {
+                            MessageBox.Show(string.Format("Sửa thông tin chuyên đề {0} thành công!", lbTopicName.Text), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sửa thông tin chuyên đề không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        conn.Close();
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {

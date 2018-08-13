@@ -36,6 +36,7 @@
             this.dgvTopics = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.MajorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TopicCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TopicName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MajorCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -115,6 +116,7 @@
             this.dgvTopics.BackgroundColor = System.Drawing.Color.White;
             this.dgvTopics.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTopics.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MajorID,
             this.TopicCode,
             this.TopicName,
             this.MajorCode,
@@ -159,6 +161,14 @@
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // MajorID
+            // 
+            this.MajorID.DataPropertyName = "MajorID";
+            this.MajorID.HeaderText = "MajorID";
+            this.MajorID.Name = "MajorID";
+            this.MajorID.ReadOnly = true;
+            this.MajorID.Visible = false;
             // 
             // TopicCode
             // 
@@ -270,6 +280,7 @@
         private System.Windows.Forms.DataGridView dgvTopics;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MajorID;
         private System.Windows.Forms.DataGridViewTextBoxColumn TopicCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn TopicName;
         private System.Windows.Forms.DataGridViewTextBoxColumn MajorCode;
