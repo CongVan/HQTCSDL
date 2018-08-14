@@ -155,11 +155,6 @@ ALTER TABLE Student_Team add Year int
 
 
 
--- cài khóa chính cho bảng Student_Team : ID, StudentID, TeamID, Semester, Year
--- chưa F5
-ALTER TABLE Student_Team ADD CONSTRAINT PK_Student_Team PRIMARY KEY (ID, StudentID, TeamID, Semester, Year)
-
-
 -- Tra cứu điểm
 CREATE PROC LookUpScore @StudentID int,
 					   @Semester int,
