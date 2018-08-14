@@ -14,7 +14,7 @@ GO
 
 
 -- Thêm chuyên đề
-alter PROC InsertTopic @Code VARCHAR(100), 
+CREATE PROC InsertTopic @Code VARCHAR(100), 
 					   @Name NVARCHAR(100), 
 					   @Deadline DATETIME,
 					   @NumberTeam INTEGER,
@@ -53,7 +53,7 @@ GO
 
 
 -- Lấy danh sách chuyên đề
-alter PROC GetTopics @TeacherID INTEGER
+CREATE PROC GetTopics @TeacherID INTEGER
 AS
      BEGIN
          SELECT T.ID, T.Code as 'TopicCode', T.Name as 'TopicName', T.Deadline, T.NumberTeam, T.NumberStudent, T.Enable, T.FromDate, T.ToDate, T.MajorID, M.Code as 'MajorCode', M.Name as 'MajorName'
@@ -64,7 +64,7 @@ GO
 
 
 -- Lấy danh sách chuyên đề theo từ khóa
-alter PROC GetTopicsByKeyWord @KeyWord nvarchar(200),
+CREATE PROC GetTopicsByKeyWord @KeyWord nvarchar(200),
 							  @TeacherID INTEGER
 AS
 	BEGIN TRAN
@@ -91,7 +91,7 @@ GO
 -- Lấy danh sách sinh viên
 ALTER TABLE Student ALTER COLUMN Gender int
 
-alter PROC GetStudents
+CREATE PROC GetStudents
 AS
 	BEGIN
 		SELECT S.ID, S.Code, S.FullName, S.Gender, S.DayOfBirth, S.Address, M.Name as 'MajorName'
@@ -102,7 +102,7 @@ GO
 
 
 -- Lấy danh sách sinh viên theo từ khóa
-alter PROC GetStudentsByKeyWord @KeyWord nvarchar(100)
+CREATE PROC GetStudentsByKeyWord @KeyWord nvarchar(100)
 AS
 	BEGIN TRAN
 		IF NOT EXISTS (Select *                                   -- Cấp khóa đọc trên bảng Student
@@ -125,7 +125,7 @@ GO
 
 
 -- Chỉnh sửa thông tin Chuyên đề
-alter PROC UpdateTopic @MajorID int,
+CREATE PROC UpdateTopic @MajorID int,
 					   @TopicCode varchar(100),
 					   @Deadline DateTime,
 					   @NumberTeam int,
@@ -161,7 +161,7 @@ ALTER TABLE Student_Team ADD CONSTRAINT PK_Student_Team PRIMARY KEY (ID, Student
 
 
 -- Tra cứu điểm
-alter PROC LookUpScore @StudentID int,
+CREATE PROC LookUpScore @StudentID int,
 					   @Semester int,
 					   @Year int
 AS
