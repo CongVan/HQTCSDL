@@ -63,7 +63,7 @@
             this.lblTitleMain.ForeColor = System.Drawing.Color.Snow;
             this.lblTitleMain.Location = new System.Drawing.Point(0, 0);
             this.lblTitleMain.Name = "lblTitleMain";
-            this.lblTitleMain.Size = new System.Drawing.Size(447, 41);
+            this.lblTitleMain.Size = new System.Drawing.Size(445, 41);
             this.lblTitleMain.TabIndex = 0;
             this.lblTitleMain.Text = "MỞ CHUYÊN ĐỀ";
             this.lblTitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -186,14 +186,14 @@
             0,
             0});
             this.mudNumberStudent.Name = "mudNumberStudent";
-            this.mudNumberStudent.Size = new System.Drawing.Size(144, 22);
+            this.mudNumberStudent.Size = new System.Drawing.Size(222, 22);
             this.mudNumberStudent.TabIndex = 8;
             // 
             // mudNumberTeam
             // 
             this.mudNumberTeam.Location = new System.Drawing.Point(149, 81);
             this.mudNumberTeam.Name = "mudNumberTeam";
-            this.mudNumberTeam.Size = new System.Drawing.Size(144, 22);
+            this.mudNumberTeam.Size = new System.Drawing.Size(222, 22);
             this.mudNumberTeam.TabIndex = 7;
             // 
             // dtpDeadline
@@ -202,7 +202,7 @@
             this.dtpDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDeadline.Location = new System.Drawing.Point(149, 37);
             this.dtpDeadline.Name = "dtpDeadline";
-            this.dtpDeadline.Size = new System.Drawing.Size(144, 22);
+            this.dtpDeadline.Size = new System.Drawing.Size(222, 22);
             this.dtpDeadline.TabIndex = 6;
             // 
             // btnSubmit
@@ -211,7 +211,7 @@
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.ForeColor = System.Drawing.Color.Snow;
-            this.btnSubmit.Location = new System.Drawing.Point(160, 473);
+            this.btnSubmit.Location = new System.Drawing.Point(189, 473);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(108, 39);
             this.btnSubmit.TabIndex = 3;
@@ -224,7 +224,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.Coral;
-            this.btnClose.Location = new System.Drawing.Point(285, 473);
+            this.btnClose.Location = new System.Drawing.Point(313, 473);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(108, 39);
             this.btnClose.TabIndex = 4;
@@ -241,7 +241,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(447, 540);
+            this.ClientSize = new System.Drawing.Size(445, 517);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.groupBox2);
