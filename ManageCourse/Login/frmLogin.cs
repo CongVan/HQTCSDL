@@ -30,9 +30,8 @@ namespace Login
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
-        {
-
-            Logining();
+        {       
+           Logining();
         }
         private void Logining()
         {
