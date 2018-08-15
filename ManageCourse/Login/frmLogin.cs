@@ -17,6 +17,7 @@ namespace Login
 {
     public partial class frmLogin : Form
     {
+        public static string ID = "";
         string connectionString = DBEntity.GetConnection();
         public frmLogin()
         {
@@ -70,6 +71,9 @@ namespace Login
                         }
                     case 3://student
                         {
+                            string sql = "select s.ID as ID from User u,Student s where u.UserName = '" + userName + "' and u.PassWord = '" + passWord + "' and s.UserID = u.ID";
+                            DataTable tbl = DBEntity.GetTable(sql);
+                            ID = tbl.Rows[0]["ID"].ToString();
                             var frm = new frmStudent();
                             frm.Show();
                             break;
