@@ -52,19 +52,50 @@
     <Compile Include="frmAddTopic.Designer.cs">
       <DependentUpon>frmAddTopic.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmScoreDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmScoreDetails.Designer.cs">
+      <DependentUpon>frmScoreDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTeacher.Designer.cs">
       <DependentUpon>frmTeacher.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUpdateTopic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateTopic.Designer.cs">
+      <DependentUpon>frmUpdateTopic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCManageStudent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCManageStudent.Designer.cs">
+      <DependentUpon>UCManageStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCManageTopic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCManageTopic.Designer.cs">
+      <DependentUpon>UCManageTopic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validation.cs" />
     <EmbeddedResource Include="frmAddTopic.resx">
       <DependentUpon>frmAddTopic.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmScoreDetails.resx">
+      <DependentUpon>frmScoreDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTeacher.resx">
       <DependentUpon>frmTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateTopic.resx">
+      <DependentUpon>frmUpdateTopic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -75,6 +106,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UCManageStudent.resx">
+      <DependentUpon>UCManageStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCManageTopic.resx">
+      <DependentUpon>UCManageTopic.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

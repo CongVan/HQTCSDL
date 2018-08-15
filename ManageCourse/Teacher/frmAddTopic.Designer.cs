@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblTitleMain = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTopicName = new System.Windows.Forms.TextBox();
@@ -45,10 +46,12 @@
             this.dtpDeadline = new System.Windows.Forms.DateTimePicker();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ErrorChecker = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberTeam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorChecker)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitleMain
@@ -60,7 +63,7 @@
             this.lblTitleMain.ForeColor = System.Drawing.Color.Snow;
             this.lblTitleMain.Location = new System.Drawing.Point(0, 0);
             this.lblTitleMain.Name = "lblTitleMain";
-            this.lblTitleMain.Size = new System.Drawing.Size(447, 41);
+            this.lblTitleMain.Size = new System.Drawing.Size(445, 41);
             this.lblTitleMain.TabIndex = 0;
             this.lblTitleMain.Text = "MỞ CHUYÊN ĐỀ";
             this.lblTitleMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -86,6 +89,7 @@
             this.txtTopicName.Name = "txtTopicName";
             this.txtTopicName.Size = new System.Drawing.Size(222, 22);
             this.txtTopicName.TabIndex = 5;
+            this.txtTopicName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTopicName_KeyPress);
             // 
             // txtTopicCode
             // 
@@ -93,6 +97,7 @@
             this.txtTopicCode.Name = "txtTopicCode";
             this.txtTopicCode.Size = new System.Drawing.Size(223, 22);
             this.txtTopicCode.TabIndex = 4;
+            this.txtTopicCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTopicCode_KeyPress);
             // 
             // cbbMajor
             // 
@@ -181,14 +186,14 @@
             0,
             0});
             this.mudNumberStudent.Name = "mudNumberStudent";
-            this.mudNumberStudent.Size = new System.Drawing.Size(144, 22);
+            this.mudNumberStudent.Size = new System.Drawing.Size(222, 22);
             this.mudNumberStudent.TabIndex = 8;
             // 
             // mudNumberTeam
             // 
             this.mudNumberTeam.Location = new System.Drawing.Point(149, 81);
             this.mudNumberTeam.Name = "mudNumberTeam";
-            this.mudNumberTeam.Size = new System.Drawing.Size(144, 22);
+            this.mudNumberTeam.Size = new System.Drawing.Size(222, 22);
             this.mudNumberTeam.TabIndex = 7;
             // 
             // dtpDeadline
@@ -197,7 +202,7 @@
             this.dtpDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDeadline.Location = new System.Drawing.Point(149, 37);
             this.dtpDeadline.Name = "dtpDeadline";
-            this.dtpDeadline.Size = new System.Drawing.Size(144, 22);
+            this.dtpDeadline.Size = new System.Drawing.Size(222, 22);
             this.dtpDeadline.TabIndex = 6;
             // 
             // btnSubmit
@@ -206,7 +211,7 @@
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.ForeColor = System.Drawing.Color.Snow;
-            this.btnSubmit.Location = new System.Drawing.Point(160, 473);
+            this.btnSubmit.Location = new System.Drawing.Point(189, 473);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(108, 39);
             this.btnSubmit.TabIndex = 3;
@@ -219,7 +224,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.Coral;
-            this.btnClose.Location = new System.Drawing.Point(285, 473);
+            this.btnClose.Location = new System.Drawing.Point(313, 473);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(108, 39);
             this.btnClose.TabIndex = 4;
@@ -227,12 +232,16 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // ErrorChecker
+            // 
+            this.ErrorChecker.ContainerControl = this;
+            // 
             // frmAddTopic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(447, 540);
+            this.ClientSize = new System.Drawing.Size(445, 517);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.groupBox2);
@@ -252,6 +261,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberStudent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mudNumberTeam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorChecker)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -275,5 +285,6 @@
         private System.Windows.Forms.NumericUpDown mudNumberTeam;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ErrorProvider ErrorChecker;
     }
 }

@@ -31,7 +31,7 @@
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnManagerUser = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnManageTopic = new System.Windows.Forms.Button();
             this.btnManageMajor = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.pnlMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlMenu.Controls.Add(this.btnManagerUser);
             this.pnlMenu.Controls.Add(this.btnLogout);
-            this.pnlMenu.Controls.Add(this.button3);
+            this.pnlMenu.Controls.Add(this.btnManageTopic);
             this.pnlMenu.Controls.Add(this.btnManageMajor);
             this.pnlMenu.Controls.Add(this.panel3);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -83,17 +83,18 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // button3
+            // btnManageTopic
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(8, 218);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(205, 58);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Chuyên đề";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnManageTopic.BackColor = System.Drawing.Color.White;
+            this.btnManageTopic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManageTopic.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageTopic.Location = new System.Drawing.Point(8, 218);
+            this.btnManageTopic.Name = "btnManageTopic";
+            this.btnManageTopic.Size = new System.Drawing.Size(205, 58);
+            this.btnManageTopic.TabIndex = 4;
+            this.btnManageTopic.Text = "Chuyên đề";
+            this.btnManageTopic.UseVisualStyleBackColor = false;
+            this.btnManageTopic.Click += new System.EventHandler(this.btnManageTopic_Click);
             // 
             // btnManageMajor
             // 
@@ -164,7 +165,7 @@
         private System.Windows.Forms.Panel pnlContainer;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnManageTopic;
         private System.Windows.Forms.Button btnManageMajor;
         private System.Windows.Forms.Button btnManagerUser;
     }
