@@ -30,8 +30,7 @@ namespace Admin
         private void btnManagerUser_Click(object sender, EventArgs e)
         {
             var control = new UCManageUser();
-            control.Width = pnlContainer.Width;
-            control.Height = pnlContainer.Height;
+            control.Dock = DockStyle.Fill;
             pnlContainer.Controls.Clear();
             pnlContainer.Controls.Add(control);
         }
@@ -39,8 +38,7 @@ namespace Admin
         private void btnManageMajor_Click(object sender, EventArgs e)
         {
             var control = new UCManageMajor();
-            control.Width = pnlContainer.Width;
-            control.Height = pnlContainer.Height;
+            control.Dock = DockStyle.Fill;
             pnlContainer.Controls.Clear();
             pnlContainer.Controls.Add(control);
         }
@@ -48,8 +46,7 @@ namespace Admin
         private void btnManageTopic_Click(object sender, EventArgs e)
         {
             var control = new UCManageTopic();
-            control.Width = pnlContainer.Width;
-            control.Height = pnlContainer.Height;
+            control.Dock = DockStyle.Fill;
             pnlContainer.Controls.Clear();
             pnlContainer.Controls.Add(control);
         }
