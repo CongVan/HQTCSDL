@@ -153,7 +153,11 @@ namespace Teacher
         }
 
 
-        // Tên chuyên đề không nhập ký tự đặc biệt
+        /// <summary>
+        /// Tên chuyên đề không nhập ký tự đặc biệt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtTopicName_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
@@ -164,7 +168,11 @@ namespace Teacher
         }
 
 
-        // Mã chuyên đề không nhập ký tự đặc biệt và khoảng trắng
+        /// <summary>
+        /// Mã chuyên đề không nhập ký tự đặc biệt và khoảng trắng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtTopicCode_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
