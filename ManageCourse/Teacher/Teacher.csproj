@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAddTeam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddTeam.Designer.cs">
+      <DependentUpon>frmAddTeam.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddTopic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
       <DependentUpon>UCManageTopic.cs</DependentUpon>
     </Compile>
     <Compile Include="Validation.cs" />
+    <EmbeddedResource Include="frmAddTeam.resx">
+      <DependentUpon>frmAddTeam.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddTopic.resx">
       <DependentUpon>frmAddTopic.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +140,9 @@
       <Project>{00107556-f9e5-46de-8582-9b4f18b3ce58}</Project>
       <Name>Conector</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\reset32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

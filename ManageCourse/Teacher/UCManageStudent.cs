@@ -178,5 +178,34 @@ namespace Teacher
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        /// <summary>
+        /// Nhấn Enter sẽ gọi đến sự kiện Click của nút Tìm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtKeyword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(this, new EventArgs());
+            }
+        }
+
+
+        /// <summary>
+        /// Không được nhập ký tự đặc biệt ở ô tìm kiếm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtKeyword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+            if (char.IsLetter(e.KeyChar) == true || char.IsControl(e.KeyChar) == true || char.IsWhiteSpace(e.KeyChar) == true || char.IsDigit(e.KeyChar) == true)
+            {
+                e.Handled = false;
+            }
+        }
     }
 }

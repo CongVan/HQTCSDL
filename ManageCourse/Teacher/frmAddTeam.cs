@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Teacher
 {
-    public partial class frmUpdateTopic : Form
+    public partial class frmAddTeam : Form
     {
-        public frmUpdateTopic()
+        public frmAddTeam()
         {
             InitializeComponent();
         }
@@ -23,7 +23,7 @@ namespace Teacher
         {
             if (KiemTraDuLieu())
             {
-                var tb = MessageBox.Show(string.Format("Bạn có chắc chắn muốn chỉnh sửa thông tin chuyên đề {0} ?", lbTopicName.Text), "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var tb = MessageBox.Show(string.Format("Bạn có chắc chắn muốn tạo nhóm <{0}> ?", txtTeamName.Text), "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (tb == DialogResult.Yes)
                 {
@@ -32,14 +32,12 @@ namespace Teacher
                         string connectionString = Conector.DBEntity.GetConnection();
                         SqlConnection conn = new SqlConnection(connectionString);
                         SqlCommand cmd = new SqlCommand();
-                        cmd.CommandText = "UpdateTopic";
+                        cmd.CommandText = "InsertTeam";
                         cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.Add("@MajorID", SqlDbType.Int).Value = int.Parse(lbMajorID.Text);
-                        cmd.Parameters.Add("@TopicCode", SqlDbType.VarChar).Value = lbTopicCode.Text;
-                        cmd.Parameters.Add("@Deadline", SqlDbType.DateTime).Value = dtpDeadline.Value.ToString("yyyy-MM-dd");
-                        cmd.Parameters.Add("@NumberTeam", SqlDbType.Int).Value = int.Parse(mudNumberTeam.Value.ToString());
-                        cmd.Parameters.Add("@NumberStudent", SqlDbType.Int).Value = int.Parse(mudNumberStudent.Value.ToString());
+                        
+                        cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = txtTeamName.Text;
+                        cmd.Parameters.Add("@TopicID", SqlDbType.Int).Value = int.Parse(lbTopicID.Text);
+                        cmd.Parameters.Add("@Enable", SqlDbType.Bit).Value = "True";
 
                         cmd.Connection = conn;
                         conn.Open();
@@ -47,11 +45,11 @@ namespace Teacher
 
                         if (count > 0)
                         {
-                            MessageBox.Show(string.Format("Sửa thông tin chuyên đề {0} thành công!", lbTopicName.Text), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(string.Format("Tạo nhóm <{0}> thành công!", txtTeamName.Text), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("Sửa thông tin chuyên đề không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Tạo nhóm không thành công!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         conn.Close();
                     }
@@ -68,26 +66,14 @@ namespace Teacher
         }
 
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
         private bool KiemTraDuLieu()
         {
             ErrorChecker.Clear();  //  giả sử ban đầu mọi dữ liệu là đúng
-
-            if (mudNumberTeam.Value == 0)
+            
+            if (string.IsNullOrWhiteSpace(txtTeamName.Text))
             {
                 ErrorChecker.BlinkRate = 500;
-                ErrorChecker.SetError(mudNumberTeam, "Không được để trống.");
-                return false;
-            }
-            if (mudNumberStudent.Value == 0)
-            {
-                ErrorChecker.BlinkRate = 500;
-                ErrorChecker.SetError(mudNumberStudent, "Không được để trống.");
+                ErrorChecker.SetError(txtTeamName, "Không được để trống.");
                 return false;
             }
             else
@@ -95,6 +81,27 @@ namespace Teacher
                 ErrorChecker.Clear();
             }
             return true;
+        }
+
+
+        /// <summary>
+        /// Không được nhập ký tự đặc biệt ở ô Tên nhóm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtTeamName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+            if (char.IsLetter(e.KeyChar) == true || char.IsControl(e.KeyChar) == true || char.IsWhiteSpace(e.KeyChar) == true || char.IsDigit(e.KeyChar) == true)
+            {
+                e.Handled = false;
+            }
+        }
+
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

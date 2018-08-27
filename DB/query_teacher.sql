@@ -23,7 +23,7 @@ CREATE PROC InsertTopic @Code          VARCHAR(100),
                         @TeacherID     INTEGER
 AS
      BEGIN
-         BEGIN TRAN;
+         BEGIN TRAN
          BEGIN TRY
              IF EXISTS
              (
@@ -40,8 +40,7 @@ AS
                  ELSE
                  BEGIN
                      INSERT INTO dbo.[Topical]                 -- Cấp khóa ghi trên bảng Topical
-                     (Code, Name, Deadline, NumberTeam, NumberStudent, Enable, MajorID, TeacherID
-                     )
+                     (Code, Name, Deadline, NumberTeam, NumberStudent, Enable, MajorID, TeacherID)
                      --  ID - value of this column is auto-generated
                      VALUES
                      (@Code, 
@@ -60,26 +59,28 @@ AS
              ROLLBACK TRAN;
          END CATCH;
          COMMIT TRAN;
-         END;
+	END;
 GO
 
 -- Lấy danh sách chuyên đề
-CREATE PROC GetTopics @TeacherID INTEGER
+ALTER PROC GetTopics @TeacherID INTEGER
 AS
      BEGIN
-         SELECT T.ID, T.Code AS 'TopicCode', T.Name AS 'TopicName', T.Deadline, T.NumberTeam, T.NumberStudent, T.Enable, T.FromDate, T.ToDate, T.MajorID, M.Code AS 'MajorCode', M.Name AS 'MajorName'
-         FROM Topical T, Major M
+         SELECT T.ID AS 'TopicID', T.Code AS 'TopicCode', T.Name AS 'TopicName', T.Deadline, COUNT(TT.TopicalID) AS 'NumberOfTeam', T.NumberTeam, T.NumberStudent, T.Enable, T.FromDate, T.ToDate, T.MajorID, M.Code AS 'MajorCode', M.Name AS 'MajorName'
+         FROM Topical T, Major M, Team_Topical TT
          WHERE T.TeacherID = @TeacherID
-               AND T.MajorID = M.ID;
+               AND T.MajorID = M.ID
+			   AND TT.TopicalID = T.ID
+		 GROUP BY T.ID, T.Code, T.Name, T.Deadline, T.NumberTeam, T.NumberStudent, T.Enable, T.FromDate, T.ToDate, T.MajorID, M.Code, M.Name;
      END;
 GO
 
 -- Lấy danh sách chuyên đề theo từ khóa
-CREATE PROC GetTopicsByKeyWord @KeyWord   NVARCHAR(200), 
+ALTER PROC GetTopicsByKeyWord @KeyWord   NVARCHAR(200), 
                                @TeacherID INTEGER
 AS
      BEGIN
-         BEGIN TRAN;
+         BEGIN TRAN
          IF NOT EXISTS
          (
              SELECT *                                   -- Cấp khóa đọc trên bảng Topical
@@ -94,15 +95,17 @@ AS
              END;
              ELSE
              BEGIN
-                 SELECT T.ID, T.Code AS 'TopicCode', T.Name AS 'TopicName', T.Deadline, T.NumberTeam, T.NumberStudent, T.Enable, T.FromDate, T.ToDate, T.MajorID, M.Code AS 'MajorCode', M.Name AS 'MajorName'        -- Cấp khóa đọc trên bảng Topical và Major
-                 FROM Topical T, Major M
-                 WHERE(T.Code LIKE '%'+@KeyWord+'%'
-                       OR T.Name LIKE '%'+@KeyWord+'%')
+                 SELECT T.ID AS 'TopicID', T.Code AS 'TopicCode', T.Name AS 'TopicName', T.Deadline, COUNT(TT.TopicalID) AS 'NumberOfTeam', T.NumberTeam, T.NumberStudent, T.Enable, T.FromDate, T.ToDate, T.MajorID, M.Code AS 'MajorCode', M.Name AS 'MajorName'        -- Cấp khóa đọc trên bảng Topical, Major và Team_Topical
+                 FROM Topical T, Major M, Team_Topical TT
+                 WHERE(T.Code LIKE '%'+ @KeyWord +'%'
+                       OR T.Name LIKE '%' + @KeyWord + '%')
                       AND T.TeacherID = @TeacherID
-                      AND T.MajorID = M.ID;
+                      AND T.MajorID = M.ID
+					  AND TT.TopicalID = T.ID
+				 GROUP BY T.ID, T.Code, T.Name, T.Deadline, T.NumberTeam, T.NumberStudent, T.Enable, T.FromDate, T.ToDate, T.MajorID, M.Code, M.Name;
              END;
          COMMIT TRAN;
-         END;
+	END;
 GO
 
 -- Lấy danh sách sinh viên
@@ -121,7 +124,7 @@ GO
 CREATE PROC GetStudentsByKeyWord @KeyWord NVARCHAR(100)
 AS
      BEGIN
-         BEGIN TRAN;
+         BEGIN TRAN
          IF NOT EXISTS
          (
              SELECT *                                   -- Cấp khóa đọc trên bảng Student
@@ -142,7 +145,7 @@ AS
                       AND S.MajorID = M.ID;
              END;
          COMMIT TRAN;
-         END;
+	END;
 GO
 
 -- Chỉnh sửa thông tin Chuyên đề
@@ -153,7 +156,7 @@ CREATE PROC UpdateTopic @MajorID       INT,
                         @NumberStudent INT
 AS
      BEGIN
-         BEGIN TRAN;
+         BEGIN TRAN
          IF NOT EXISTS
          (
              SELECT *
@@ -173,7 +176,7 @@ AS
          WHERE Code = @TopicCode
                AND MajorID = @MajorID;
          COMMIT TRAN;
-         END;
+	END;
 GO
 
 -- Thêm cột Học Kỳ và Năm Học vào bảng Student_Team
@@ -185,13 +188,14 @@ GO
 ALTER TABLE Student_Team
 ADD Year INT;
 GO
+
 -- Tra cứu điểm
 CREATE PROC LookUpScore @StudentID INT, 
                         @Semester  INT, 
                         @Year      INT
 AS
      BEGIN
-         BEGIN TRAN;
+         BEGIN TRAN
          IF NOT EXISTS
          (
              SELECT *
@@ -213,7 +217,47 @@ AS
                AND S.TeamID = P.ID
                AND P.TopicalID = T.ID;
          COMMIT TRAN;
-         END;
+	END;
 GO
 
-select * from topical
+-- Tạo nhóm
+CREATE PROC InsertTeam @Name NVARCHAR(200),
+				       @TopicID INT,
+					   @Enable BIT
+AS
+	BEGIN
+		BEGIN TRAN
+			BEGIN TRY
+				INSERT INTO dbo.[Team_Topical]
+				--  ID - value of this column is auto-generated
+				(Name, TopicalID, Enable)
+				VALUES
+				(@Name, @TopicID, @Enable);
+
+				IF EXISTS
+				(
+					SELECT *
+					FROM Topical T, Team_Topical TT
+					WHERE TT.TopicalID = @TopicID
+					  AND TT.TopicalID = T.ID
+					HAVING COUNT (TT.TopicalID) > (SELECT T.NumberTeam
+									               FROM Topical T
+									               WHERE T.ID = @TopicID)
+				)
+				BEGIN
+					DECLARE @TopicName NVARCHAR(200);
+					SET @TopicName = (SELECT T.Name
+									  FROM Topical T
+									  WHERE T.ID = @TopicID);
+
+					RAISERROR(N'Chuyên đề %s đã đạt số lượng nhóm tối đa. Tạo nhóm không thành công!', 10, 1, @TopicName);
+					ROLLBACK TRAN;
+				END;
+			END TRY
+			BEGIN CATCH
+				RAISERROR(N'Lỗi hệ thống.', 10, 1);
+				ROLLBACK TRAN;
+			END CATCH;
+		COMMIT TRAN;
+	END;
+GO

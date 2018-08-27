@@ -34,19 +34,21 @@
             this.txtKeyword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnCreateTeam = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.dgvTopics = new System.Windows.Forms.DataGridView();
             this.MajorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TopicID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TopicCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TopicName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MajorCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MajorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Deadline = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumberOfTeam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberTeam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberStudent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Enable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FromDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopics)).BeginInit();
@@ -97,6 +99,8 @@
             this.txtKeyword.Name = "txtKeyword";
             this.txtKeyword.Size = new System.Drawing.Size(316, 26);
             this.txtKeyword.TabIndex = 1;
+            this.txtKeyword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyword_KeyDown);
+            this.txtKeyword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKeyword_KeyPress);
             // 
             // label2
             // 
@@ -110,6 +114,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnReset);
+            this.panel2.Controls.Add(this.btnCreateTeam);
             this.panel2.Controls.Add(this.btnUpdate);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 446);
@@ -117,18 +123,46 @@
             this.panel2.Size = new System.Drawing.Size(708, 64);
             this.panel2.TabIndex = 4;
             // 
+            // btnReset
+            // 
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.Coral;
+            this.btnReset.Image = global::Teacher.Properties.Resources.reset32;
+            this.btnReset.Location = new System.Drawing.Point(19, 6);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(108, 39);
+            this.btnReset.TabIndex = 5;
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnCreateTeam
+            // 
+            this.btnCreateTeam.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnCreateTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateTeam.ForeColor = System.Drawing.Color.Snow;
+            this.btnCreateTeam.Location = new System.Drawing.Point(315, 6);
+            this.btnCreateTeam.Name = "btnCreateTeam";
+            this.btnCreateTeam.Size = new System.Drawing.Size(143, 41);
+            this.btnCreateTeam.TabIndex = 4;
+            this.btnCreateTeam.Text = "Tạo nhóm";
+            this.btnCreateTeam.UseVisualStyleBackColor = false;
+            this.btnCreateTeam.Click += new System.EventHandler(this.btnCreateTeam_Click);
+            // 
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.SteelBlue;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.Snow;
-            this.btnUpdate.Location = new System.Drawing.Point(31, 3);
+            this.btnUpdate.Location = new System.Drawing.Point(149, 6);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(143, 41);
             this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // dgvTopics
             // 
@@ -139,16 +173,16 @@
             this.dgvTopics.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTopics.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MajorID,
+            this.TopicID,
             this.TopicCode,
             this.TopicName,
             this.MajorCode,
             this.MajorName,
             this.Deadline,
+            this.NumberOfTeam,
             this.NumberTeam,
             this.NumberStudent,
-            this.Enable,
-            this.FromDate,
-            this.ToDate});
+            this.Enable});
             this.dgvTopics.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTopics.GridColor = System.Drawing.Color.White;
             this.dgvTopics.Location = new System.Drawing.Point(0, 110);
@@ -168,6 +202,14 @@
             this.MajorID.Name = "MajorID";
             this.MajorID.ReadOnly = true;
             this.MajorID.Visible = false;
+            // 
+            // TopicID
+            // 
+            this.TopicID.DataPropertyName = "TopicID";
+            this.TopicID.HeaderText = "TopicID";
+            this.TopicID.Name = "TopicID";
+            this.TopicID.ReadOnly = true;
+            this.TopicID.Visible = false;
             // 
             // TopicCode
             // 
@@ -209,10 +251,18 @@
             this.Deadline.ReadOnly = true;
             this.Deadline.Width = 150;
             // 
+            // NumberOfTeam
+            // 
+            this.NumberOfTeam.DataPropertyName = "NumberOfTeam";
+            this.NumberOfTeam.HeaderText = "Số lượng nhóm hiện tại";
+            this.NumberOfTeam.Name = "NumberOfTeam";
+            this.NumberOfTeam.ReadOnly = true;
+            this.NumberOfTeam.Width = 170;
+            // 
             // NumberTeam
             // 
             this.NumberTeam.DataPropertyName = "NumberTeam";
-            this.NumberTeam.HeaderText = "Số nhóm tối đa";
+            this.NumberTeam.HeaderText = "Số lượng nhóm tối đa";
             this.NumberTeam.Name = "NumberTeam";
             this.NumberTeam.ReadOnly = true;
             this.NumberTeam.Width = 150;
@@ -231,22 +281,6 @@
             this.Enable.HeaderText = "Tình trạng";
             this.Enable.Name = "Enable";
             this.Enable.ReadOnly = true;
-            // 
-            // FromDate
-            // 
-            this.FromDate.DataPropertyName = "FromDate";
-            this.FromDate.HeaderText = "Từ ngày";
-            this.FromDate.Name = "FromDate";
-            this.FromDate.ReadOnly = true;
-            this.FromDate.Width = 150;
-            // 
-            // ToDate
-            // 
-            this.ToDate.DataPropertyName = "ToDate";
-            this.ToDate.HeaderText = "Đến ngày";
-            this.ToDate.Name = "ToDate";
-            this.ToDate.ReadOnly = true;
-            this.ToDate.Width = 150;
             // 
             // UCManageTopic
             // 
@@ -279,16 +313,18 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.DataGridView dgvTopics;
+        private System.Windows.Forms.Button btnCreateTeam;
         private System.Windows.Forms.DataGridViewTextBoxColumn MajorID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TopicID;
         private System.Windows.Forms.DataGridViewTextBoxColumn TopicCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn TopicName;
         private System.Windows.Forms.DataGridViewTextBoxColumn MajorCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn MajorName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Deadline;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfTeam;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberTeam;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberStudent;
         private System.Windows.Forms.DataGridViewTextBoxColumn Enable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FromDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ToDate;
+        private System.Windows.Forms.Button btnReset;
     }
 }
