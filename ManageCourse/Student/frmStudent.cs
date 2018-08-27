@@ -24,5 +24,10 @@ namespace Student
             pnlContainer.Controls.Clear();
             pnlContainer.Controls.Add(control);
         }
+
+        private void btnTransferTeam_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

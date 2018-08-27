@@ -30,8 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnManageTopic = new System.Windows.Forms.Button();
             this.btnManageTeam = new System.Windows.Forms.Button();
+            this.btnTransferTeam = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlContainer = new System.Windows.Forms.Panel();
@@ -42,8 +42,8 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnLogout);
-            this.panel1.Controls.Add(this.btnManageTopic);
             this.panel1.Controls.Add(this.btnManageTeam);
+            this.panel1.Controls.Add(this.btnTransferTeam);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -64,30 +64,31 @@
             this.btnLogout.Text = "ĐĂNG XUẤT";
             this.btnLogout.UseVisualStyleBackColor = true;
             // 
-            // btnManageTopic
-            // 
-            this.btnManageTopic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManageTopic.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManageTopic.ForeColor = System.Drawing.Color.Coral;
-            this.btnManageTopic.Location = new System.Drawing.Point(6, 143);
-            this.btnManageTopic.Name = "btnManageTopic";
-            this.btnManageTopic.Size = new System.Drawing.Size(196, 55);
-            this.btnManageTopic.TabIndex = 2;
-            this.btnManageTopic.Text = "CHUYÊN ĐỀ";
-            this.btnManageTopic.UseVisualStyleBackColor = true;
-            this.btnManageTopic.Click += new System.EventHandler(this.btnManageTopic_Click);
-            // 
             // btnManageTeam
             // 
             this.btnManageTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManageTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManageTeam.ForeColor = System.Drawing.Color.Coral;
-            this.btnManageTeam.Location = new System.Drawing.Point(6, 83);
+            this.btnManageTeam.Location = new System.Drawing.Point(6, 86);
             this.btnManageTeam.Name = "btnManageTeam";
             this.btnManageTeam.Size = new System.Drawing.Size(196, 55);
-            this.btnManageTeam.TabIndex = 1;
-            this.btnManageTeam.Text = "NHÓM";
+            this.btnManageTeam.TabIndex = 2;
+            this.btnManageTeam.Text = "ĐK NHÓM";
             this.btnManageTeam.UseVisualStyleBackColor = true;
+            this.btnManageTeam.Click += new System.EventHandler(this.btnManageTopic_Click);
+            // 
+            // btnTransferTeam
+            // 
+            this.btnTransferTeam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransferTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransferTeam.ForeColor = System.Drawing.Color.Coral;
+            this.btnTransferTeam.Location = new System.Drawing.Point(6, 147);
+            this.btnTransferTeam.Name = "btnTransferTeam";
+            this.btnTransferTeam.Size = new System.Drawing.Size(196, 55);
+            this.btnTransferTeam.TabIndex = 1;
+            this.btnTransferTeam.Text = "CHUYỂN NHÓM";
+            this.btnTransferTeam.UseVisualStyleBackColor = true;
+            this.btnTransferTeam.Click += new System.EventHandler(this.btnTransferTeam_Click);
             // 
             // panel3
             // 
@@ -132,6 +133,7 @@
             this.Name = "frmStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TRANG SINH VIÊN";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -142,8 +144,8 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button btnManageTopic;
         private System.Windows.Forms.Button btnManageTeam;
+        private System.Windows.Forms.Button btnTransferTeam;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlContainer;
