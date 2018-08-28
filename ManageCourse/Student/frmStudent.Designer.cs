@@ -63,6 +63,7 @@
             this.btnLogout.TabIndex = 3;
             this.btnLogout.Text = "ĐĂNG XUẤT";
             this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnManageTeam
             // 
@@ -117,7 +118,8 @@
             this.pnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContainer.Location = new System.Drawing.Point(208, 0);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(612, 509);
+            this.pnlContainer.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
+            this.pnlContainer.Size = new System.Drawing.Size(677, 509);
             this.pnlContainer.TabIndex = 1;
             // 
             // frmStudent
@@ -125,7 +127,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(820, 509);
+            this.ClientSize = new System.Drawing.Size(885, 509);
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -133,7 +135,7 @@
             this.Name = "frmStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TRANG SINH VIÊN";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmStudent_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -71,10 +71,15 @@ namespace Login
                         }
                     case 3://student
                         {
-                            string sql = "select s.ID as ID from User u,Student s where u.UserName = '" + userName + "' and u.PassWord = '" + passWord + "' and s.UserID = u.ID";
-                            DataTable tbl = DBEntity.GetTable(sql);
-                            ID = tbl.Rows[0]["ID"].ToString();
-                            var frm = new frmStudent();
+                            int idUser = int.Parse(tb.Rows[0]["ID"].ToString());
+                            cmd.CommandText = "SELECT ID FROM Student WHERE UserID=" + idUser;
+                            cmd.CommandType = CommandType.Text;
+                            var tbTemp = new DataTable();
+                            var adapter = new SqlDataAdapter(cmd);
+                            adapter.Fill(tbTemp);
+                            int idStudent = int.Parse(tbTemp.Rows[0]["ID"].ToString());
+
+                            var frm = new frmStudent(idStudent);
                             frm.Show();
                             break;
                         }

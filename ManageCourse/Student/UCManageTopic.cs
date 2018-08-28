@@ -14,12 +14,16 @@ namespace Student
 {
     public partial class UCManageTopic : UserControl
     {
-        public UCManageTopic()
+        int _idStudent = 0;
+        public UCManageTopic(int idStudent)
         {
+            this._idStudent = idStudent;
             InitializeComponent();
             LoadMajor();
             LoadTopics();
             LoadTeams();
+            dgvStudentTeam.AutoGenerateColumns = false;
+            dgvTeams.AutoGenerateColumns = false;
         }
         public void LoadMajor()
         {
@@ -82,11 +86,13 @@ namespace Student
             conn.Open();
             var cmd = new SqlCommand("StudentRegisterTeam", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idStudent", new Random().Next(1, 100));
+            cmd.Parameters.AddWithValue("@idStudent", _idStudent);
             cmd.Parameters.AddWithValue("@idTeam", idTeam);
             cmd.Parameters.AddWithValue("@idTopical", cbbTopic.SelectedValue);
+            cmd.Parameters.Add("@Result", SqlDbType.Int).Direction = ParameterDirection.Output;
             int count = cmd.ExecuteNonQuery();
-            int returnValue = (int)cmd.Parameters["@RETURN_VALUE"].Value;
+            int returnValue = int.Parse(cmd.Parameters["@Result"].Value.ToString());
+            //int returnValue = (int)cmd.Parameters["@RETURN_VALUE"].Value;
             if (returnValue > 0)
             {
                 MessageBox.Show("Đăng ký nhóm thành công!","Thông báo");
@@ -94,13 +100,14 @@ namespace Student
             }
             else
             {
-                MessageBox.Show("Đăng ký nhóm thất bại!","Thông báo");
+                MessageBox.Show("Đăng ký nhóm thất bại. Mã lỗi ("+returnValue+")","Thông báo");
             }
         }
 
         private void cbbTopic_SelectedValueChanged(object sender, EventArgs e)
         {
-
+            LoadTeams();
+            LoadStudentTeams();
         }
 
         private void dgvTeams_SelectionChanged(object sender, EventArgs e)
@@ -109,9 +116,22 @@ namespace Student
         }
         void LoadStudentTeams()
         {
-            var idTeam = dgvTeams.Rows[dgvTeams.CurrentCell.RowIndex].Cells["ID"].Value;
+            if ( dgvTeams.Rows.Count==0)
+            {
+                dgvStudentTeam.DataSource = null;
+                return;
+            }
+            int rowIndex = dgvTeams.CurrentCell==null?-1:dgvTeams.CurrentCell.RowIndex;
+            if (rowIndex <0)
+            {
+                dgvStudentTeam.DataSource = null;
+                
+                return;
+            }
+            var idTeam = dgvTeams.Rows[rowIndex].Cells["ID"].Value;
             if (idTeam == null)
             {
+                dgvStudentTeam.DataSource = null;
                 return;
             }
             var conn = new SqlConnection(DBEntity.GetConnection());
